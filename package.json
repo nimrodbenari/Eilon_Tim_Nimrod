@@ -19,6 +19,7 @@
   "homepage": "https://github.com/nimrodbenari/Eilon_Tim_Nimrod#readme",
   "dependencies": {
     "express": "^4.18.1",
+    "mongodb": "^4.6.0",
     "nodemon": "^2.0.16"
   }
 }
