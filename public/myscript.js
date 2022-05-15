@@ -23,4 +23,18 @@
       document.getElementById("mySidebar").style.display = "none";
       document.getElementById("myOverlay").style.display = "none";
     }
+
+    function loadLogin() {
+      fetch("http://localhost:3000/login.html")
+        .then(function (response) {
+          return response.text();
+        })
+        .then(function (html) {
+          document.getElementById("renderPage").innerHTML = html;
+        });
+    }
+
+    function sendUserInfo('User Name','password'){
+      alert(username);
+    }
     
