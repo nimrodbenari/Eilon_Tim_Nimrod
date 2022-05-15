@@ -34,7 +34,7 @@
         });
     }
 
-    function sendUserInfo('User Name','password'){
-      alert(username);
-    }
+    // function sendUserInfo('User Name','password'){
+    //   alert(username);
+    // }
     
