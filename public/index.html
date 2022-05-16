@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="/public/styels/mystyle.css"></script>
+    <script src="./scripts/myscript.js"></script>
 
     <link rel="stylesheet" href="mystyle.css">
 
@@ -33,25 +33,26 @@
     <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
       <div class="w3-container w3-display-container w3-padding-16">
         <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
-        <h3 class="w3-wide"><b>Eilon Surf</b></h3>
+        <h3 class="w3-wide"><b>CHAB <br>Surf Center</b></h3>
       </div>
       <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold">
        
-        <a href="#" class="w3-bar-item w3-button">Swimming</a>
-        <a href="#" class="w3-bar-item w3-button">Surfing</a>
+        <a href="#" class="w3-bar-item w3-button">WetSuits</a>
+        <a href="#" class="w3-bar-item w3-button">BodyBoard</a>
         <a onclick="myAccFunc()" href="javascript:void(0)" class="w3-button w3-block w3-white w3-left-align" id="myBtn">
-          Daiving <i class="fa fa-caret-down"></i>
+          Surf Boards <i class="fa fa-caret-down"></i>
         </a>
         <div id="demoAcc" class="w3-bar-block w3-hide w3-padding-large w3-medium">
-          <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Flippers</a>
-          <a href="#" class="w3-bar-item w3-button">Long</a>
-          <a href="#" class="w3-bar-item w3-button">Medium</a>
-          <a href="#" class="w3-bar-item w3-button">Short</a>
+          <a href="#" class="w3-bar-item w3-button w3-light-grey"><i class="fa fa-caret-right w3-margin-right"></i>Board Type</a>
+          <a href="#" class="w3-bar-item w3-button">Long Board</a>
+          <a href="#" class="w3-bar-item w3-button">Mid Legth</a>
+          <a href="#" class="w3-bar-item w3-button">Shorts</a>
+          <a href="#" class="w3-bar-item w3-button">Fish</a>
         </div>
-        <a href="#" class="w3-bar-item w3-button">Jackets</a>
-        <a href="#" class="w3-bar-item w3-button">Gymwear</a>
-        <a href="#" class="w3-bar-item w3-button">Blazers</a>
-        <a href="#" class="w3-bar-item w3-button">Shoes</a>
+        <a href="#" class="w3-bar-item w3-button">Surf Bags</a>
+        <a href="#" class="w3-bar-item w3-button">Surf Accessories</a>
+        <a href="#" class="w3-bar-item w3-button">Best Sellers</a>
+
       </div>
       <a href="#footer" class="w3-bar-item w3-button w3-padding">Contact</a> 
       <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding" onclick="document.getElementById('newsletter').style.display='block'">Newsletter</a> 
@@ -77,7 +78,7 @@
       
       <!-- Top header -->
       <header class="w3-container w3-xlarge">
-        <p class="w3-left">Daiving</p>
+        <p class="w3-left">Surf Boards</p>
         <p class="w3-right">
           <a href="./register.html" class="w3-bar-item w3-button">Login</a>
           <i class="fa fa-shopping-cart w3-margin-right"></i>
@@ -87,12 +88,12 @@
     
       <!-- Image header -->
       <div class="w3-display-container w3-container" id="renderPage">
-        <img src="https://img.redbull.com/images/c_crop,w_5568,h_2784,x_0,y_269,f_auto,q_auto/c_scale,w_1200/redbullcom/2019/04/16/e04ec246-cd71-40db-8c47-3e9703132959/chasing-the-shot-leroy-bellet-michel-bourez-tahiti" alt="Jeans" style="width:100%">
-        <div class="w3-display-topleft w3-text-white" style="padding:24px 48px">
+        <img src="./css_img/header.jpg" alt="Jeans" style="width:100%">
+        <div class="w3-display-topleft w3-text-white" style="padding:24px 48px;top: 220px">
           <h1 class="w3-jumbo w3-hide-small">New arrivals</h1>
           <h1 class="w3-hide-large w3-hide-medium">New arrivals</h1>
-          <h1 class="w3-hide-small">COLLECTION 2016</h1>
-          <p><a href="#jeans" class="w3-button w3-black w3-padding-large w3-large">SHOP NOW</a></p>
+          <h1 class="w3-hide-small">COLLECTION 2022</h1>
+          <!-- <p><a href="#jeans" class="w3-button w3-black w3-padding-large w3-large">SHOP NOW</a></p> -->
         </div>
       </div>
     
@@ -104,57 +105,58 @@
       <div class="w3-row w3-grayscale">
         <div class="w3-col l3 s6">
           <div class="w3-container">
-            <img src="" style="width:100%">
-            <p>Ripped Skinny Jeans<br><b>$24.99</b></p>
+            <img src="./css_img/fish_1.jpg" style="width:100%">
+            <p>Album Sunstone surfboard 5ft 8 Futures - White<br><b>$1124.99</b></p>
           </div>
+
           <div class="w3-container">
-            <img src="/w3images/jeans2.jpg" style="width:100%">
-            <p>Mega Ripped Jeans<br><b>$19.99</b></p>
+            <img src="./css_img/fish_2.jpg" style="width:100%">
+            <p>Album Twinsman surfboard 5ft 7 Futures - Grey Resin Tint<br><b>$1319.99</b></p>
           </div>
         </div>
     
         <div class="w3-col l3 s6">
           <div class="w3-container">
             <div class="w3-display-container">
-              <img src="/w3images/jeans2.jpg" style="width:100%">
+              <img src="./css_img/fish_3.jpg" style="width:100%">
               <span class="w3-tag w3-display-topleft">New</span>
               <div class="w3-display-middle w3-display-hover">
                 <button class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
               </div>
             </div>
-            <p>Mega Ripped Jeans<br><b>$19.99</b></p>
+            <p>Channel Islands Rocket Wide Swallow surfboard Spine-Tek 6ft 2 FCS II - Grey<br><b>$1519.99</b></p>
           </div>
           <div class="w3-container">
-            <img src="/w3images/jeans3.jpg" style="width:100%">
-            <p>Washed Skinny Jeans<br><b>$20.50</b></p>
+            <img src="./css_img/fish_4.jpg" style="width:100%">
+            <p>Album Lightbender surfboard 5ft 9 Futures - Denim Resin Tint<br><b>$920.50</b></p>
           </div>
         </div>
     
         <div class="w3-col l3 s6">
           <div class="w3-container">
-            <img src="/w3images/jeans3.jpg" style="width:100%">
-            <p>Washed Skinny Jeans<br><b>$20.50</b></p>
+            <img src="./css_img/short_1.jpg" style="width:100%">
+            <p>Stewart Hydro Glide Soft Top Surfboard 9ft 0 - Blue<br><b>$1520.50</b></p>
           </div>
           <div class="w3-container">
             <div class="w3-display-container">
-              <img src="/w3images/jeans4.jpg" style="width:100%">
+              <img src="./css_img/short_2.jpg" style="width:100%">
               <span class="w3-tag w3-display-topleft">Sale</span>
               <div class="w3-display-middle w3-display-hover">
                 <button class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
               </div>
             </div>
-            <p>Vintage Skinny Jeans<br><b class="w3-text-red">$14.99</b></p>
+            <p>Walden Mega Magic Fusion HD surfboard 9ft 0 - White<br><b class="w3-text-red">$1114.99</b></p>
           </div>
         </div>
     
         <div class="w3-col l3 s6">
           <div class="w3-container">
-            <img src="/w3images/jeans4.jpg" style="width:100%">
-            <p>Vintage Skinny Jeans<br><b>$14.99</b></p>
+            <img src="./css_img/long_1.jpg" style="width:100%">
+            <p>Takayama In The Pink Soft Top Surfboard 9ft 0 - Blue<br><b>$914.99</b></p>
           </div>
           <div class="w3-container">
-            <img src="/w3images/jeans1.jpg" style="width:100%">
-            <p>Ripped Skinny Jeans<br><b>$24.99</b></p>
+            <img src="./css_img/long_2.jpg" style="width:100%">
+            <p>Takayama In The Pink TufLite-PC surfboard 8ft 6 - Turquoise<br><b>$724.99</b></p>
           </div>
         </div>
       </div>
