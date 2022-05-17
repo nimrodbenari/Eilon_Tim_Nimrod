@@ -8,8 +8,6 @@ const db_adapter = require("./dbAdapter");
 
 const bcrypt = require('bcrypt')
 
-const users =[]
-
 app.use(express.urlencoded({ extended: false}))
 app.use(express.static('public'))
 
@@ -34,7 +32,17 @@ app.post('/register.html', async (req, res) => {
   } catch  {
     res.redirect('/register.html')
   }
-  console.log(users)
+}) 
+
+app.post('/login.html', async (req, res) => {
+  try {
+   const hashedPassword = await bcrypt.hash(req.body.password, 10);
+   db_adapter.checkUser(req.body.username,hashedPassword);
+   res.redirect('/index.html');
+  } catch  {
+    res.redirect('/login.html')
+    console.log('no customer was found')
+  }
 }) 
 
 app.listen(port, () => {
