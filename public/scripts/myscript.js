@@ -24,17 +24,34 @@
       document.getElementById("myOverlay").style.display = "none";
     }
 
-    function loadLogin() {
+    function loadHome(){
+      fetch("http://localhost:3000/homepage.html")
+      .then(function(response){
+          return response.text()
+      })
+      .then(function(html){
+          document.getElementById("renderPage").innerHTML=html;
+      });
+  }
+  
+  function loadLogin(){
       fetch("http://localhost:3000/login.html")
-        .then(function (response) {
-          return response.text();
-        })
-        .then(function (html) {
-          document.getElementById("renderPage").innerHTML = html;
-        });
-    }
+      .then(function(response){
+          return response.text()
+      })
+      .then(function(html){
+          document.getElementById("renderPage").innerHTML=html;
+      });
 
-    // function sendUserInfo('User Name','password'){
-    //   alert(username);
-    // }
+    }
     
+    function loadRegister(){
+      fetch("http://localhost:3000/register.html")
+      .then(function(response){
+          return response.text()
+      })
+      .then(function(html){
+          document.getElementById("renderPage").innerHTML=html;
+      });
+
+    }
