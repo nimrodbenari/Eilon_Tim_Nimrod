@@ -6,6 +6,9 @@ const app = express()
 const port = 3000
 const db_adapter = require("./dbAdapter");
 
+const userManagement = require('express-user-management');
+userManagement.init(expressApp, options);
+
 const bcrypt = require('bcrypt')
 
 app.use(express.urlencoded({ extended: false}))
