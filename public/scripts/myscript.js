@@ -55,3 +55,14 @@
       });
 
     }
+
+    function loadmangerpage(){
+      fetch("http://localhost:3000/mangerpage.html")
+      .then(function(response){
+          return response.text()
+      })
+      .then(function(html){
+          document.getElementById("renderPage").innerHTML=html;
+      });
+
+    }

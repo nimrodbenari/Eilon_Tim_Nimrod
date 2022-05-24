@@ -17,7 +17,7 @@
     <div class="wrapper fadeInDown">
         <div id="formContent">
             <!-- Tabs Titles -->
-            <h2 class="active"> Log In </h2>
+            <h2 class="active"> Insert New Product </h2>
 
 
 
@@ -27,16 +27,17 @@
             }</script>
             <form id="login" action='/login.html' method="post" class="modal">
             
+                <input type="text" id="productname" class="fadeIn second" name="productname" placeholder="Product Name">
+                <input type="text" id="productprice" class="fadeIn second" name="productprice" placeholder="Product Price ">
+                <input type="text" id="quantity" class="fadeIn second" name="quantity" placeholder="Quantity">
+                <input type="text" id="category" class="fadeIn second" name="category" placeholder="Product Category">
                 <input type="text" id="username" class="fadeIn second" name="username" placeholder="User Name">
-                <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">
-                <input type="submit" class="fadeIn fourth" value="Log In">
+               
+                <input type="submit" class="fadeIn fourth" value="Send Product">
                
             </form>
 
-            <!-- go to register -->
-            <div id="formFooter">
-                <a class="w3-bar-item w3-button" onclick="loadRegister()">Register</a>
-            </div>
+      
 
         </div>
     </div>
