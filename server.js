@@ -34,6 +34,8 @@ app.post('/register.html', async (req, res) => {
   }
 }) 
 
+
+
 app.post('/login.html', async (req, res) => {
   try {
    const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -45,6 +47,14 @@ app.post('/login.html', async (req, res) => {
   }
 }) 
 
+app.post('/mangerpage.html', async (req, res) => {
+  try {
+   db_adapter.insertProduct(req.body.productname,req.body.productprice,req.body.quantity,req.body.category);
+   res.redirect('/index.html')
+  } catch  {
+    res.redirect('/mangerpage.html')
+  }
+}) 
 app.listen(port, () => {
   console.log(`http://localhost:${port}`)
 })

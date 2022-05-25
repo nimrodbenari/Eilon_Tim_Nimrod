@@ -21,6 +21,24 @@ async function SendUser(name,email,hashedPassword){
     }
 }
 
+async function insertProduct(productname,productprice,quantity,category){
+    try {
+        // Connect to the MongoDB cluster
+        await client.connect();
+  
+        const database = client.db("WaterSportCenter");
+      const haiku = database.collection("Products");
+      // create a document to insert
+      const doc = { product_name: productname, product_price: productprice,Quantity : quantity,Category : category}
+      const result = await haiku.insertOne(doc);
+      console.log(`A products was inserted `);
+      } catch (e) {
+          console.error(e);
+      } finally {
+          await client.close();
+      }
+  }
+
 async function checkUser(name,hashedPassword){
   try {
       // Connect to the MongoDB cluster
@@ -42,6 +60,7 @@ async function checkUser(name,hashedPassword){
 
 exports.sendUser = SendUser;
 exports.checkUser = checkUser;
+exports.insertProduct = insertProduct;
 
 // async function main(){
 //   try {
