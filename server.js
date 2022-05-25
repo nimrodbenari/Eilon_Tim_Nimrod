@@ -1,13 +1,12 @@
-// if (process.env.NODE !== 'prodaction') {
-//   require('dorenv').config()
-// }
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const bcrypt = require('bcrypt');
 const db_adapter = require("./dbAdapter");
+const ejs = require('ejs');
+const mongoose = require('mongoose');
+const app = express();
+const port = 3000;
 
-const bcrypt = require('bcrypt')
-
+app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false}))
 app.use(express.static('public'))
 
