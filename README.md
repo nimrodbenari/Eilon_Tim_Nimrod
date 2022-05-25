@@ -9,6 +9,11 @@ Status update:
 we have Main Page, server (serever.js) and DB model (dbAdapter.js)
 we connected the register page login page and maneger page to the DB with POST method.
 
+Grades:
+Nimrod - 100
+Eilon - 100
+
+
 ![image](https://user-images.githubusercontent.com/105338215/168820435-4b554934-0ddf-408b-9e7b-00495c2eaca5.png)
 
 
