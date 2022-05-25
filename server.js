@@ -34,8 +34,6 @@ app.post('/register.html', async (req, res) => {
   }
 }) 
 
-
-
 app.post('/login.html', async (req, res) => {
   try {
    const hashedPassword = await bcrypt.hash(req.body.password, 10);
