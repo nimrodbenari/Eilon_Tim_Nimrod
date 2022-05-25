@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="./scripts/myscript.js"></script>
-
+    <meta http-equiv="refresh" content="20">
     <link rel="stylesheet" href="mystyle.css">
 
     <style>
@@ -19,12 +19,12 @@
 </head>
 
 <body class="w3-content" style="max-width:1200px" onload="loadHome()" >
-
+  
 
     <!-- Sidebar/menu -->
     <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:250px" id="mySidebar">
       <div class="w3-container w3-display-container w3-padding-16">
-        <i onclick="w3_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+        <i onclick="func_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
         <a class="w3-bar-item w3-button" onclick="loadHome()"><b>CHAB <br>Surf Center</b></a>
 
       </div>
@@ -56,12 +56,12 @@
     <!-- Top menu on small screens -->
     <header class="w3-bar w3-top w3-hide-large w3-black w3-xlarge">
       <div class="w3-bar-item w3-padding-24 w3-wide">LOGO</div>
-      <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="w3_open()"><i class="fa fa-bars"></i></a>
+      <a href="javascript:void(0)" class="w3-bar-item w3-button w3-padding-24 w3-right" onclick="func_open()"><i class="fa fa-bars"></i></a>
       
     </header>
     
     <!-- Overlay effect when opening sidebar on small screens -->
-    <div class="w3-overlay w3-hide-large" onclick="w3_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
+    <div class="w3-overlay w3-hide-large" onclick="func_close()" style="cursor:pointer" title="close side menu" id="myOverlay"></div>
     
     <!-- !PAGE CONTENT! -->
     <div class="w3-main" style="margin-left:250px">
