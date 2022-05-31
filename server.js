@@ -2,7 +2,6 @@ const express = require('express');
 const bcrypt = require('bcrypt');
 const db_adapter = require("./dbAdapter");
 const ejs = require('ejs');
-const mongoose = require('mongoose');
 const app = express();
 const port = 3000;
 
@@ -11,9 +10,6 @@ app.use(express.urlencoded({ extended: false}))
 app.use(express.static('public'))
 
 
-app.get('/', (req, res) => {
-  res.send('Hello World!')
-})
 
 app.get('/login', (req, res) => {
   res.render('login.html')
@@ -52,6 +48,7 @@ app.post('/mangerpage.html', async (req, res) => {
     res.redirect('/mangerpage.html')
   }
 }) 
+
 app.listen(port, () => {
   console.log(`http://localhost:${port}`)
 })

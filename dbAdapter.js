@@ -1,9 +1,7 @@
-const { default: mongoose } = require('mongoose');
 
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb+srv://EilonChabner:TimNimrodEilon1@cluster0.2978k.mongodb.net/test";
 const client = new MongoClient(url);
-mongoose.connect(url);
 
 async function SendUser(name,email,hashedPassword){
   try {
@@ -39,7 +37,7 @@ async function insertProduct(productname,productprice,quantity,category){
       } finally {
           await client.close();
       }
-  }
+}
 
 async function checkUser(name,hashedPassword){
   try {
