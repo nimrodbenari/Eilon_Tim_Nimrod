@@ -8,7 +8,15 @@
         x.className = x.className.replace(" w3-show", "");
       }
     }
-    
+    function myAccFunc() {
+      var x = document.getElementById("demoAcc_2");
+      if (x.className.indexOf("w3-show") == -1) {
+        x.className += " w3-show";
+      } else {
+        x.className = x.className.replace(" w3-show", "");
+      }
+    }
+
     // Click on the "Jeans" link on page load to open the accordion for demo purposes
     document.getElementById("myBtn").click();
     
@@ -66,3 +74,15 @@
       });
 
     }
+
+    function loadOrders(){
+      fetch("http://localhost:3000/orderspage.html")
+      .then(function(response){
+          return response.text()
+      })
+      .then(function(html){
+          document.getElementById("renderPage").innerHTML=html;
+      });
+
+    }
+
