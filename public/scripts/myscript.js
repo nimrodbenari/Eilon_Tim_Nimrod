@@ -85,4 +85,13 @@
       });
 
     }
+    function loadOrders_2(){
+      fetch("http://localhost:3000/orderspage.ejs")
+      .then(function(response){
+          return response.text()
+      })
+      .then(function(html){
+          document.getElementById("renderPage").innerHTML=html;
+      });
 
+    }
