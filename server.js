@@ -4,7 +4,6 @@ const db_adapter = require("./dbAdapter");
 const ejs = require('ejs');
 const app = express();
 const port = 3000;
-
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({ extended: false}))
 app.use(express.static('public'))
@@ -32,8 +31,14 @@ app.post('/register.html', async (req, res) => {
 app.post('/login.html', async (req, res) => {
   try {
    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-   db_adapter.checkUser(req.body.username,hashedPassword);
-   res.redirect('/index.html');
+   const result = db_adapter.checkUser(req.body.username,hashedPassword);
+   if (result) {
+    res.redirect('/index.html');
+   }
+   else {
+    res.redirect('/login.html')
+    console.log('no customer was found')
+   }
   } catch  {
     res.redirect('/login.html')
     console.log('no customer was found')
