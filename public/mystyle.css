@@ -1,0 +1,21 @@
+/*hide role-specific div html*/
+a.manager{
+    display: none;
+    padding:16px 16px;
+    text-decoration-line: none;
+    width:auto;
+    border:none;
+    display:block;
+    outline:0;
+    width:100%;
+    overflow:hidden;
+    white-space:normal;
+    text-align:center;
+    display:inline-block;
+    text-decoration:none;
+    color:inherit;
+    background-color:inherit;
+    text-align:left;
+    cursor:pointer;
+    white-space:nowrap
+    }

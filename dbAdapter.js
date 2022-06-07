@@ -40,6 +40,8 @@ async function insertProduct(productname,productprice,quantity,category){
 }
 
 async function checkUser(name,hashedPassword){
+    let result;
+    let titel;
   try {
       // Connect to the MongoDB cluster
       await client.connect();
@@ -47,8 +49,8 @@ async function checkUser(name,hashedPassword){
       const database = client.db("WaterSportCenter");
     const haiku = database.collection("customers");
     // create a document to insert
-    const doc = { user_name: name,password:hashedPassword }
-    const result = await haiku.find(doc);
+    const doc = { user_name: name,password:hashedPassword}
+    result = await haiku.find(doc);
     console.log(`A customer was founded with the name: ${doc.user_name}`);
     } catch (e) {
         console.error(e);
@@ -56,6 +58,7 @@ async function checkUser(name,hashedPassword){
     } finally {
         await client.close();
     }
+    return result;
 }
 
 exports.sendUser = SendUser;
