@@ -17,15 +17,42 @@
     <footer class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
         <div class="w3-row-padding">
             <h4>Orders</h4>
-            <form id="Maneger" action='/mangerpage.html' method="post">
+            <form id="orders" action='/orderspage.html' method="GET">
             
-                <input type="text" id="productname" class="fadeIn second" name="productname" placeholder="Product Name">
-                <input type="text" id="productprice" class="fadeIn second" name="productprice" placeholder="Product Price ">
-                <input type="text" id="quantity" class="fadeIn second" name="quantity" placeholder="Quantity">
-                <input type="text" id="category" class="fadeIn second" name="category" placeholder="Product Category">
-                <input type="file" id="image" class="fadeIn second" name="image" placeholder="Upload Image">
-                <input type="submit" class="fadeIn fourth" value="Send Product">
-               
+                <script>
+                    function createTable(data)
+                    { 
+                     var ourTable=document.getElementById("theTable");
+                     theHTML="<tr><th>כותרת</th><th>תאריך</th><th>תאריך עברי</th><th>תאור בעברית</th>"
+                        data.items.forEach(holiday => {
+                        newHtml=`<tr><td>${holiday.title}</td><td>${holiday.date}</td><td>${holiday.hdate}</td><td>${holiday.hebrew}</td></tr>`   
+                        theHTML+=newHtml
+                   
+                     });   
+                     ourTable.innerHTML=theHTML
+                    }
+
+                 function getOrders()
+                 {
+                           
+                    fetch(`/mangerpage`, {
+                    method: 'GET',   
+                    })
+                    .then(response =>response.json())
+                    .then(data => {
+                    createTable(data);
+                    })
+                    .catch((error) => {
+                    console.error('Error:', error);
+                    });
+            
+                 }
+            
+            </script>
+            <form>
+                <label for="birthday">Orders:</label>
+                <input type="button" value="Get" onclick="getOrders()"/>
+                <table id="theTable" style="background-color:gold"></table>               
             </form>
           </div>
     </footer>

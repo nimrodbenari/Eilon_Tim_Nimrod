@@ -16,6 +16,7 @@
     .w3-sidebar a {font-family: "Roboto", sans-serif}
     body,h1,h2,h3,h4,h5,h6,.w3-wide {font-family: "Montserrat", sans-serif;}
     </style>
+
 </head>
 
 <body class="w3-content" style="max-width:1200px" >
@@ -28,116 +29,15 @@
       <h1 class="w3-hide-small">COLLECTION 2022</h1>
     </div>
     
-      <div class="w3-container w3-text-grey" id="jeans">
-        <p>Top Sellers</p>
-      </div>
-    
-      <!-- Product grid -->
+ 
 
 
-      <div class="w3-col l3 s6">
-        <div class="w3-container">
-          <div class="w3-display-container">
-            <img src="./css_img/short_2.jpg" style="width:100%">
-            <span class="w3-tag w3-display-topleft">New</span>
-            <div class="w3-display-middle w3-display-hover">
-              <button class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
-            </div>
-          </div>
-          <p>Walden Mega Magic Fusion HD surfboard 9ft 0 - White<br><b >$1114.99</b></p>
-        </div>
-
-
-        <div class="w3-container">
-          <div class="w3-display-container">
-            <img src="./css_img/short_2.jpg" style="width:100%">
-            <span class="w3-tag w3-display-topleft">Best Seller</span>
-            <div class="w3-display-middle w3-display-hover">
-              <button class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
-            </div>
-          </div>
-          <p>Walden Mega Magic Fusion HD surfboard 9ft 0 - White<br><b>$1114.99</b></p>
-        </div>
-      </div>
-  
-      
-      <div class="w3-col l3 s6">
-        <div class="w3-container">
-           <div class="w3-display-container">
-             <img src="./css_img/short_2.jpg" style="width:100%">
-             <span class="w3-tag w3-display-topleft">!!!!</span>
-             <div class="w3-display-middle w3-display-hover">
-               <button class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
-             </div>
-           </div>
-           <p>Walden Mega Magic Fusion HD surfboard 9ft 0 - White<br><b>$1114.99</b></p>
-         </div>
-
-
-         <div class="w3-container">
-           <div class="w3-display-container">
-             <img src="./css_img/short_2.jpg" style="width:100%">
-             <span class="w3-tag w3-display-topleft">Sale</span>
-             <div class="w3-display-middle w3-display-hover">
-               <button class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
-             </div>
-           </div>
-           <p>Walden Mega Magic Fusion HD surfboard 9ft 0 - White<br><b>$1114.99</b></p>
-         </div>
-       </div>
-
-       <div class="w3-col l3 s6">
-        <div class="w3-container">
-           <div class="w3-display-container">
-             <img src="./css_img/short_2.jpg" style="width:100%">
-             <span class="w3-tag w3-display-topleft">Sale</span>
-             <div class="w3-display-middle w3-display-hover">
-               <button class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
-             </div>
-           </div>
-           <p>Walden Mega Magic Fusion HD surfboard 9ft 0 - White<br><b>$1114.99</b></p>
-         </div>
-
-
-         <div class="w3-container">
-           <div class="w3-display-container">
-             <img src="./css_img/short_2.jpg" style="width:100%">
-             <span class="w3-tag w3-display-topleft">Sale</span>
-             <div class="w3-display-middle w3-display-hover">
-               <button class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
-             </div>
-           </div>
-           <p>Walden Mega Magic Fusion HD surfboard 9ft 0 - White<br><b>$1114.99</b></p>
-         </div>
-       </div>
-
-      <div class="w3-col l3 s6">
-       <div class="w3-container">
-          <div class="w3-display-container">
-            <img src="./css_img/short_2.jpg" style="width:100%">
-            <span class="w3-tag w3-display-topleft">Sale</span>
-            <div class="w3-display-middle w3-display-hover">
-              <button class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
-            </div>
-          </div>
-          <p>Walden Mega Magic Fusion HD surfboard 9ft 0 - White<br><b>$1114.99</b></p>
-        </div>
-
-
-        <div class="w3-container">
-          <div class="w3-display-container">
-            <img src="./css_img/short_2.jpg" style="width:100%">
-            <span class="w3-tag w3-display-topleft">Sale</span>
-            <div class="w3-display-middle w3-display-hover">
-              <button class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
-            </div>
-          </div>
-          <p>Walden Mega Magic Fusion HD surfboard 9ft 0 - White<br><b>$1114.99</b></p>
-        </div>
-      </div>
-
-   
-    </div>
+<div>
+<label for="products">All Products:</label>
+<button class="w3-button w3-margin-bottom" onclick="getProducts()">GET</button>
+<table id="theTable" style="background-color:rgb(179, 220, 233)"></table>
+</div>
+<!-- **************************************************************** -->
     
       <!-- Subscribe section -->
       <div class="w3-container w3-black w3-padding-32">
