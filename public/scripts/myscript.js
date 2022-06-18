@@ -85,19 +85,37 @@
       });
 
     }
-    function loadOrders_2(){
-      fetch("http://localhost:3000/orderspage.ejs")
-      .then(function(response){
-          return response.text()
-      })
-      .then(function(html){
-          document.getElementById("renderPage").innerHTML=html;
-      });
 
-    }
+  
 
-    // Show div html based on role
+  function createTable(data)
+  { 
+   var ourTable=document.getElementById("theTable");
+   theHTML="<tr><th>שם מוצר </th><th>מחיר</th><th>כמות</th><th>קטגוריה</th></tr>"
+      data.forEach(product => {
+      newHtml=`<tr><td>${product.product_name}</td><td>${product.product_price}</td><td>${product.Quantity}</td><td>${product.Category}</td></tr>`   
+      theHTML+=newHtml
  
- if (HelpCenter.user.role=="manager"){
+   });   
+   ourTable.innerHTML=theHTML
+  }
+function getProducts()
+{
+  fetch(`/getproducts`, {
+  method: 'GET',   
+  })
+  .then(response =>response.json())
+  .then(data => {
+  createTable(data);
+  })
+  .catch((error) => {
+  console.error('Error:', error);
+  });
+
+}
+
+    // Show div html based on rolle
+ 
+ if (HelpCenter.user.rolle=="manager"){
   $("div.manager").show();
  }
