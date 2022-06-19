@@ -66,7 +66,12 @@ app.get('/getproducts',(req, res) => {
    })
   })
 
-
+  app.get('/getorders',(req, res) => {  
+    db_adapter.getOrders()
+    .then(function(response){
+      res.send(response)
+     })
+    })
 
 app.listen(port, () => {
   console.log(`http://localhost:${port}`)

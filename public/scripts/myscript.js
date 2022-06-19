@@ -133,3 +133,31 @@ function getProducts()
   });
 
 }
+//---------------- orders table
+function getOrders()
+{
+  fetch(`/getorders`, {
+  method: 'GET',   
+  })
+  .then(response =>response.json())
+  .then(data => {
+    createOrdersTable(data);
+  })
+  .catch((error) => {
+  console.error('Error:', error);
+  });
+
+}
+
+function createOrdersTable(data)
+{ 
+ var ourTable=document.getElementById("orderTable");
+ theHTML="<tr><th>Order ID</th><th>Customer</th><th>order date</th><th>delivery date</th><th>shipp_adress</th></tr>"
+    data.forEach(order => {
+    newHtml=`<tr><td>${order._id}</td><td>${order.customer_id}
+    </td><td>${order.order_date_time}</td><td>${order.delivery_date_time}</td><td>${order.shipp_adress}</td></tr>`   
+    theHTML+=newHtml
+
+ });   
+ ourTable.innerHTML=theHTML
+}
