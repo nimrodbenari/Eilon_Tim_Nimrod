@@ -39,7 +39,7 @@ async function checkUser(name,password){
         console.log(`password or username wrong`);
         return "";
     }
-    // console.log(`A customer was founded with the name: ${doc.user_name}`);
+    console.log(`A customer was founded with the name: ${doc.user_name}`);
 
     } catch (e) {
         console.error(e);

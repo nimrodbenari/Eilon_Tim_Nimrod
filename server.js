@@ -16,15 +16,15 @@ app.get('/register', (req, res) => {
   res.render('register.html')
 })
 
-app.post('/register.html', async (req, res) => {
-  try {
-   const hashedPassword = await bcrypt.hash(req.body.password, 10);
-   db_adapter.sendUser(req.body.username,req.body.email,hashedPassword);
-   res.redirect('/login.html')
-  } catch  {
-    res.redirect('/register.html')
-  }
-}) 
+// app.post('/register.html', async (req, res) => {
+//   try {
+//    const hashedPassword = await bcrypt.hash(req.body.password, 10);
+//    db_adapter.sendUser(req.body.username,req.body.email,hashedPassword);
+//    res.redirect('/login.html')
+//   } catch  {
+//     res.redirect('/register.html')
+//   }
+// }) 
 
 app.post('/login.html', async (req, res) => {
   try {
