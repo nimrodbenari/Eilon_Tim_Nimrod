@@ -91,7 +91,7 @@
     { 
      var ourDiv=document.getElementById("theDiv");
      theHtml=`<div> Products</div>`
-        data.forEach(product => {if (product.category==category) {
+        data.forEach(product => {if (product.category==category || category==null ) {
         
         newHtml=`<div class="w3-col l3 s6" style="background-color: white;">
         <div class="w3-display-container">

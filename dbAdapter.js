@@ -22,17 +22,17 @@ async function SendUser(name,email,hashedPassword){
     }
 }
 
-async function insertProduct(productname,productprice,quantity,category){
+async function insertProduct(productname,productprice,quantity,category,url){
+    
     try {
         // Connect to the MongoDB cluster
         await client.connect();
-  
         const database = client.db("WaterSportCenter");
       const haiku = database.collection("Products");
       // create a document to insert
-      const doc = { product_name: productname, product_price: productprice,Quantity : quantity,Category : category}
-      const result = await haiku.insertOne(doc);
-      console.log(`A products was inserted `);
+      const doc = {model: productname, price: productprice,quantity: quantity,category: category,img: url}
+      let result = await haiku.insertOne(doc);
+      console.log(doc);
       } catch (e) {
           console.error(e);
       } finally {

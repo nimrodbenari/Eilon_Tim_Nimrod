@@ -50,10 +50,12 @@ app.post('/login.html', async (req, res) => {
 
 app.post('/mangerpage.html', async (req, res) => {
   try {
-   db_adapter.insertProduct(req.body.productname,req.body.productprice,req.body.quantity,req.body.category);
+   db_adapter.insertProduct(req.body.productname,req.body.productprice,req.body.quantity,req.body.category,req.body.url);
    res.redirect('/index.html')
+   console.log('inserted')
   } catch  {
-    res.redirect('/mangerpage.html')
+    console.log('no products was inserted')
+    res.redirect('/index.html')
   }
 })
 
