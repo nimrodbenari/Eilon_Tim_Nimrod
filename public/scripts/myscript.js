@@ -87,27 +87,28 @@
     }
 
   
-    function createDiv(data)
+    function createDiv(data,category)
     { 
      var ourDiv=document.getElementById("theDiv");
      theHtml=`<div> Products</div>`
-        data.forEach(product => {
-        newHtml=`<div class="w3-container">
+        data.forEach(product => {if (product.category==category) {
+        
+        newHtml=`<div class="w3-col l3 s6" style="background-color: white;">
         <div class="w3-display-container">
-          <img src="./css_img/${product.img_url}" style="width:50%">
+          <img id="boards" src="${product.img}">
           <span class="w3-tag w3-display-topleft">New</span>
           <div class="w3-display-middle w3-display-hover">
-            <button class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
+          <button class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
           </div>
         </div>
-        <p>${product.product_name}<br><b>${product.product_price} $</b></p>
+        <p>${product.model}<br><b>${product.price} $</b></p>
       </div>`   
       theHtml+=newHtml
-   
+        }
      });   
      ourDiv.innerHTML=theHtml
     }
-
+//--------------------- products div
   function createTable(data)
   { 
    var ourTable=document.getElementById("theTable");
@@ -119,14 +120,14 @@
    });   
    ourTable.innerHTML=theHTML
   }
-function getProducts()
+function getProducts(category)
 {
   fetch(`/getproducts`, {
   method: 'GET',   
   })
   .then(response =>response.json())
   .then(data => {
-  createDiv(data);
+  createDiv(data,category);
   })
   .catch((error) => {
   console.error('Error:', error);

@@ -42,3 +42,10 @@ a.manager{
         background-color: #3691db;
         color: white;
       }
+
+      #boards{
+
+      width: auto;
+      height: 250px;
+      
+      }
