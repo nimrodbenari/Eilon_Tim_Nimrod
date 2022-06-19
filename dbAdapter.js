@@ -91,24 +91,25 @@ async function getProducts(){
 }
 
 async function getOrders(){
-    try {
-        // Connect to the MongoDB cluster
-        await client.connect();
-  
-        const database = client.db("WaterSportCenter");
-      const collection = database.collection("Products");
-      // create a document to insert
-      const result = await collection.find({}).toArray();
-      console.log(result);
-  
-      // console.log(`A customer was founded with the name: ${doc.user_name}`);
-  
-      } catch (e) {
-          console.error(e);
-      } finally {
-          await client.close();
-      }
-  }
+    let result;
+  try {
+      // Connect to the MongoDB cluster
+      await client.connect();
+
+    const database = client.db("WaterSportCenter");
+    const collection = database.collection("orders");
+    // create a document to insert
+     result = await collection.find({}).toArray();
+
+    // console.log(`A customer was founded with the name: ${doc.user_name}`);
+
+    } catch (e) {
+        console.error(e);
+    } finally {
+        await client.close();
+    }
+    return result;
+}
 exports.getProducts = getProducts;
 exports.getOrders = getOrders;
 exports.sendUser = SendUser;
