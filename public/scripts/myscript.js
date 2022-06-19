@@ -18,7 +18,7 @@
     }
 
     // Click on the "Jeans" link on page load to open the accordion for demo purposes
-    document.getElementById("myBtn").click();
+  
     
     
     // Open and close sidebar
@@ -87,6 +87,26 @@
     }
 
   
+    function createDiv(data)
+    { 
+     var ourDiv=document.getElementById("theDiv");
+     theHtml=`<div> Products</div>`
+        data.forEach(product => {
+        newHtml=`<div class="w3-container">
+        <div class="w3-display-container">
+          <img src="./css_img/${product.img_url}" style="width:50%">
+          <span class="w3-tag w3-display-topleft">New</span>
+          <div class="w3-display-middle w3-display-hover">
+            <button class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
+          </div>
+        </div>
+        <p>${product.product_name}<br><b>${product.product_price} $</b></p>
+      </div>`   
+      theHtml+=newHtml
+   
+     });   
+     ourDiv.innerHTML=theHtml
+    }
 
   function createTable(data)
   { 
@@ -106,16 +126,10 @@ function getProducts()
   })
   .then(response =>response.json())
   .then(data => {
-  createTable(data);
+  createDiv(data);
   })
   .catch((error) => {
   console.error('Error:', error);
   });
 
 }
-
-    // Show div html based on rolle
- 
- if (HelpCenter.user.rolle=="manager"){
-  $("div.manager").show();
- }
