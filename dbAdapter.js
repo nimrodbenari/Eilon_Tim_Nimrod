@@ -87,6 +87,26 @@ async function getProducts(){
     }
     return result;
 }
+
+async function updateQuantity(productmodel){
+    
+    try {
+        // Connect to the MongoDB cluster
+        await client.connect();
+        const database = client.db("WaterSportCenter");
+      const haiku = database.collection("Products");
+    
+    let unitInStock = await haiku.findOne({model: productmodel});
+    let updateQuan = parseInt( unitInStock.quantity);
+    updateQuan-=1;
+    let result = await haiku.updateOne({model: productmodel}, {$set: {quantity:updateQuan }});
+     
+      } catch (e) {
+          console.error(e);
+      } finally {
+          await client.close();
+      }
+}
 //---------- orders managment section-----------------------
 async function getOrders(){
     let result;
@@ -106,7 +126,7 @@ async function getOrders(){
     return result;
 }
 
-async function insertOrder(customername,shipingaddres,phonenumber,email,cardnumber,cvv,expire){
+async function insertOrder(productmodel,customername,shipingaddres,phonenumber,email,cardnumber,cvv,expire){
     
     try {
         // Connect to the MongoDB cluster
@@ -115,7 +135,7 @@ async function insertOrder(customername,shipingaddres,phonenumber,email,cardnumb
       const haiku = database.collection("orders");
     
       // create a document to insert
-      const doc = {Customer_name:customername, shiping_addres:shipingaddres, phone_number:phonenumber,Email:email, card_number:cardnumber, Cvv:cvv,Expire:expire};
+      const doc = {Productmodel:productmodel,Customer_name:customername, shiping_addres:shipingaddres, phone_number:phonenumber,Email:email, card_number:cardnumber, Cvv:cvv,Expire:expire};
       
       let result = await haiku.insertOne(doc);
      
@@ -133,3 +153,4 @@ exports.sendUser = SendUser;
 exports.checkUser = checkUser;
 exports.insertProduct = insertProduct;
 exports.insertOrder = insertOrder;
+exports.updateQuantity= updateQuantity;

@@ -91,17 +91,29 @@
     { 
      var ourDiv=document.getElementById("theDiv");
      theHtml=`<div></div>`
-        data.forEach(product => {if (product.category==category || category==null ) {
+        data.forEach(product => {if ((product.category==category || category==null )&& product.quantity!= 0 ) {
         
         newHtml=`<div class="w3-col l3 s6" style="background-color: white;">
         <div class="w3-display-container">
           <img id="boards" src="${product.img}">
           <span class="w3-tag w3-display-topleft">New</span>
           <div class="w3-display-middle w3-display-hover">
-          <button class="w3-button w3-black" onclick="NewOrder()" >Buy now <i class="fa fa-shopping-cart" ></i></button>
+          <button class="w3-button w3-black" onclick="NewOrder('${product.model}')" >Buy now <i class="fa fa-shopping-cart" ></i></button>
           </div>
         </div>
-        <p>${product.model}<br><b>${product.price} $</b></p>
+        <p>${product.model}<br><b>${product.price}</b><b><br><lable>Unit in stock: </lable>${product.quantity}</b></p>
+      </div>`   
+      theHtml+=newHtml
+
+        } else {
+          newHtml=`<div class="w3-col l3 s6" style="background-color: white;">
+        <div class="w3-display-container">
+          <img id="boards" src="${product.img}">
+          <span class="w3-tag w3-display-topleft">New</span>
+          <div class="w3-display-middle w3-display-hover">
+          </div>
+        </div>
+        <p>${product.model}<br><b>${product.price}</b><b><br><lable>Unit in stock: </lable>${product.quantity}</b></p>
       </div>`   
       theHtml+=newHtml
         }
@@ -164,13 +176,14 @@ function createOrdersTable(data)
 }
 
 
-function NewOrder(){
+function NewOrder(model){
   fetch("http://localhost:3000/neworder.html")
   .then(function(response){
       return response.text()
   })
   .then(function(html){
       document.getElementById("renderPage").innerHTML=html;
+      document.getElementById("productmodel").innerHTML=model;
   });
 
 }
