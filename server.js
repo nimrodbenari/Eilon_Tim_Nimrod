@@ -1,18 +1,17 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const db_adapter = require("./dbAdapter");
-const ejs = require('ejs');
+
+
+
 const app = express();
 const port = 3000;
-app.set('view engine', 'ejs');
-app.use(express.urlencoded({ extended: false}))
+
 app.use(express.static('public'))
-// db_adapter.getProducts();
-// db_adapter.getOrders();
+
 
 
 app.get('/login', (req, res) => {
-  
   res.render('login.html');
 })
 
@@ -39,12 +38,10 @@ app.post('/login.html', async (req, res) => {
     res.redirect('/index.html');
    }
    else {
-    res.redirect('/login.html')
-    console.log('no customer was found')
+    console.log('no customer was found 1 ')
    }
   } catch (error) {
-    res.redirect('/login.html')
-    console.log(error)
+    res.redirect('/index.html')
   }
 }) 
 

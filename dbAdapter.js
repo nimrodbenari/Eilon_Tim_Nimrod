@@ -1,9 +1,9 @@
 const bcrypt = require('bcrypt');
-
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb+srv://EilonChabner:TimNimrodEilon1@cluster0.2978k.mongodb.net/test";
 const client = new MongoClient(url);
 
+//---------- user managment section-----------------------
 async function SendUser(name,email,hashedPassword){
   try {
       // Connect to the MongoDB cluster
@@ -21,7 +21,34 @@ async function SendUser(name,email,hashedPassword){
         await client.close();
     }
 }
+async function checkUser(name,password){
+    let user;
+  try {
+      // Connect to the MongoDB cluster
+      await client.connect();
 
+      const database = client.db("WaterSportCenter");
+    const collection = database.collection("customers");
+    // create a document to insert
+    const doc = {user_name: name};
+    user = await collection.findOne(doc);
+    console.log(user);
+    if (bcrypt.compare(password,user.password)){
+        console.log('password is correct')
+    } else {
+        console.log(`password or username wrong`);
+        return "";
+    }
+    // console.log(`A customer was founded with the name: ${doc.user_name}`);
+
+    } catch (e) {
+        console.error(e);
+        console.log(`A customer was'nt found`);
+    } finally {
+        await client.close();
+    }
+}
+//---------- products managment section-----------------------
 async function insertProduct(productname,productprice,quantity,category,url){
     
     try {
@@ -39,35 +66,6 @@ async function insertProduct(productname,productprice,quantity,category,url){
           await client.close();
       }
 }
-
-async function checkUser(name,password){
-    let user;
-  try {
-      // Connect to the MongoDB cluster
-      await client.connect();
-
-      const database = client.db("WaterSportCenter");
-    const collection = database.collection("customers");
-    // create a document to insert
-    const doc = { user_name: name};
-    user = await collection.findOne(doc);
-    console.log(user);
-    if (bcrypt.compare(password,user.password)){
-        return user.user_name;
-    } else {
-        console.log(`password or username wrong`);
-        return "";
-    }
-    // console.log(`A customer was founded with the name: ${doc.user_name}`);
-
-    } catch (e) {
-        console.error(e);
-        console.log(`A customer was'nt found`);
-    } finally {
-        await client.close();
-    }
-}
-
 
 async function getProducts(){
     let result;
@@ -89,7 +87,7 @@ async function getProducts(){
     }
     return result;
 }
-
+//---------- orders managment section-----------------------
 async function getOrders(){
     let result;
   try {
@@ -110,6 +108,8 @@ async function getOrders(){
     }
     return result;
 }
+
+//----------  exports section-----------------------
 exports.getProducts = getProducts;
 exports.getOrders = getOrders;
 exports.sendUser = SendUser;
