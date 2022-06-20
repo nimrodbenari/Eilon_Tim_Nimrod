@@ -98,7 +98,7 @@
           <img id="boards" src="${product.img}">
           <span class="w3-tag w3-display-topleft">New</span>
           <div class="w3-display-middle w3-display-hover">
-          <button class="w3-button w3-black">Buy now <i class="fa fa-shopping-cart"></i></button>
+          <button class="w3-button w3-black" onclick="NewOrder()" >Buy now <i class="fa fa-shopping-cart" ></i></button>
           </div>
         </div>
         <p>${product.model}<br><b>${product.price} $</b></p>
@@ -163,3 +163,14 @@ function createOrdersTable(data)
  ourTable.innerHTML=theHTML
 }
 
+
+function NewOrder(){
+  fetch("http://localhost:3000/neworder.html")
+  .then(function(response){
+      return response.text()
+  })
+  .then(function(html){
+      document.getElementById("renderPage").innerHTML=html;
+  });
+
+}

@@ -1,15 +1,12 @@
 const express = require('express');
 const bcrypt = require('bcrypt');
 const db_adapter = require("./dbAdapter");
-
-
-
 const app = express();
 const port = 3000;
 
 app.use(express.static('public'))
 
-
+app.use(express.urlencoded({ extended: false}))
 
 app.get('/login', (req, res) => {
   res.render('login.html');
@@ -52,6 +49,17 @@ app.post('/mangerpage.html', async (req, res) => {
    console.log('inserted')
   } catch  {
     console.log('no products was inserted')
+    res.redirect('/index.html')
+  }
+})
+
+app.post('/neworder.html', async (req, res) => {
+  try {
+   db_adapter.insertOrder(req.body.customername,req.body.shipingaddres,req.body.phonenumber,req.body.email,req.body.cardnumber,req.body.cvv,req.body.expire);
+   res.redirect('/index.html')
+    console.log('new order inserted')
+  } catch  {
+    console.log('no order inserted')
     res.redirect('/index.html')
   }
 })

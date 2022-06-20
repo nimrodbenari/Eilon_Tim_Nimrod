@@ -98,9 +98,6 @@ async function getOrders(){
     const collection = database.collection("orders");
     // create a document to insert
      result = await collection.find({}).toArray();
-
-    // console.log(`A customer was founded with the name: ${doc.user_name}`);
-
     } catch (e) {
         console.error(e);
     } finally {
@@ -109,9 +106,30 @@ async function getOrders(){
     return result;
 }
 
+async function insertOrder(customername,shipingaddres,phonenumber,email,cardnumber,cvv,expire){
+    
+    try {
+        // Connect to the MongoDB cluster
+        await client.connect();
+        const database = client.db("WaterSportCenter");
+      const haiku = database.collection("orders");
+    
+      // create a document to insert
+      const doc = {Customer_name:customername, shiping_addres:shipingaddres, phone_number:phonenumber,Email:email, card_number:cardnumber, Cvv:cvv,Expire:expire};
+      
+      let result = await haiku.insertOne(doc);
+     
+      } catch (e) {
+          console.error(e);
+      } finally {
+          await client.close();
+      }
+}
+
 //----------  exports section-----------------------
 exports.getProducts = getProducts;
 exports.getOrders = getOrders;
 exports.sendUser = SendUser;
 exports.checkUser = checkUser;
 exports.insertProduct = insertProduct;
+exports.insertOrder = insertOrder;

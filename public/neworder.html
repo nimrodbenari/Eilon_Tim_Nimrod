@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="mystyle.css">
+    <script src="./scripts/myscript.js"></script>
+    <!-- CSS     -->
+    <link rel="stylesheet" href="loginCSS.css">
+</head>
+
+<body>
+
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <h2 class="active"> Make Your Order </h2>
+
+            <!-- register Form -->
+            <form id="Neworder" action='/neworder.html' method="post" >
+                <input type="text" id="customername" class="fadeIn second" name="customername" placeholder="Full Name">
+                <input type="text" id="shipingaddres" class="fadeIn second" name="shipingaddres" placeholder="Shiping Addres">
+                <input type="text" id="phonenumber" class="fadeIn second" name="phonenumber" placeholder="Phone number">
+                <input type="text" id="email" class="fadeIn third" name="email" placeholder="Email">
+                <input type="text" id="cardnumber" class="fadeIn second" name="cardnumber" placeholder="Card number">
+                <input type="text" id="cvv" class="fadeIn second" name="cvv" placeholder="CVV">
+                <input type="text" id="expire" class="fadeIn second" name="expire" placeholder="mm/yy">
+                <input type="submit" class="fadeIn fourth" value="Submit">
+            <!-- go to login-->
+            <div id="formFooter">
+                <a class="w3-bar-item w3-button" onclick="loadHome()">Back To Home</a>
+            </div>
+
+    
+        </div>
+    </div>
+
+</body>
+
+</html>
