@@ -166,7 +166,7 @@ function getOrders()
 function createOrdersTable(data)
 { 
  var ourTable=document.getElementById("orderTable");
- theHTML="<tr><th>Order ID</th><th>Productmodel</th><th>Customer_name</th><th>shiping_addres</th><th>phone_number</th><th>Email</th><th>card_number</th><th>Cvv</th><th>Expire</th><th>Status</th></tr>"
+ theHTML="<tr><th>Order ID</th><th>Productmodel</th><th>Customer name</th><th>shiping addres</th><th>phone number</th><th>Email</th><th>card number</th><th>Cvv</th><th>Expire</th><th>Status</th></tr>"
     data.forEach(order => {
     newHtml=`<tr><td>${order._id}</td><td>${order.Productmodel}
     </td><td>${order.Customer_name}</td>
