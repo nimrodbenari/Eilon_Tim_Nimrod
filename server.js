@@ -1,5 +1,4 @@
 const express = require('express');
-const bcrypt = require('bcrypt');
 const db_adapter = require("./dbAdapter");
 const app = express();
 const port = 3000;
@@ -22,22 +21,22 @@ app.get('/register', (req, res) => {
   res.render('register.html')
 })
 
-// app.post('/register.html', async (req, res) => {
-//   try {
-//    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-//    db_adapter.sendUser(req.body.username,req.body.email,hashedPassword);
-//    res.redirect('/login.html')
-//   } catch  {
-//     res.redirect('/register.html')
-//   }
-// }) 
+app.post('/register.html', async (req, res) => {
+  try {
+   const hashedPassword = await bcrypt.hash(req.body.password, 10);
+   db_adapter.sendUser(req.body.username,req.body.email,hashedPassword);
+   res.redirect('/login.html')
+  } catch  {
+    res.redirect('/register.html')
+  }
+}) 
 
 app.post('/login.html', async (req, res) => {
   try {
-  //  const hashedPassword = await bcrypt.hash(req.body.password, 10);
+   const hashedPassword = await bcrypt.hash(req.body.password, 10);
    const result = db_adapter.checkUser(req.body.username,req.body.password);
    if (result) {
-    // window.sessionStorage.setItem("username", result);
+    window.sessionStorage.setItem("username", result);
     res.redirect('/index.html');
    }
    else {
@@ -94,8 +93,7 @@ app.listen(port, () => {
 
 app.post('/updateStatus', async (req, res) => {
   try {
-   db_adapter.updateStatus(req.body);
-   console.log('step 2:   '+req.body)
+   db_adapter.updateStatus(req.body.orderid);
   } catch  {
     console.log('not updated')
   }

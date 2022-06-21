@@ -82,7 +82,7 @@
       })
       .then(function(html){
           document.getElementById("renderPage").innerHTML=html;
-      });
+      }).then(getOrders());
 
     }
 
@@ -166,13 +166,13 @@ function getOrders()
 function createOrdersTable(data)
 { 
  var ourTable=document.getElementById("orderTable");
- theHTML="<tr><th>Order ID</th><th>Productmodel</th><th>Customer_name</th><th>shiping_addres</th><th>phone_number</th><th>Email</th><th>card_number</th><th>Cvv</th><th>Expire</th><th>Status</th><th>Button</th></tr>"
+ theHTML="<tr><th>Order ID</th><th>Productmodel</th><th>Customer_name</th><th>shiping_addres</th><th>phone_number</th><th>Email</th><th>card_number</th><th>Cvv</th><th>Expire</th><th>Status</th></tr>"
     data.forEach(order => {
     newHtml=`<tr><td>${order._id}</td><td>${order.Productmodel}
     </td><td>${order.Customer_name}</td>
     <td>${order.shiping_addres}</td><td>${order.phone_number}</td>
     <td>${order.Email}</td><td>${order.card_number}</td>
-    <td>${order.Cvv}</td><td>${order.Expire}</td><td>${order.Status}</td><td><button type="button" onclick= "updateStatus('${order._id}')">Supplied </button></td></tr>`   
+    <td>${order.Cvv}</td><td>${order.Expire}</td><td>${order.Status}</td></tr>`   
     theHTML+=newHtml
 
  });   
@@ -190,24 +190,3 @@ function NewOrder(model){
       document.getElementById("productmodel").innerHTML=model;
   });
 }
-
-
-function updateStatus(_id){
-  console.log('step 1:  '+_id)
-  fetch(`/updateStatus`, {
-    method: 'POST',
-    body: JSON.stringify("HEllo world!")
-    })
-    .catch((error) => {
-    console.error('Error:', error);
-    });
-}
-
-// function updateStatus(_id){
-//   console.log('step 1:  '+_id) 
-//   fetch(`/updateStatus`)
-//                 .then(response => response.text())
-//                 .then(data => {
-//                     var pizzaTypes = JSON.parse(data);
-//                     var myTables = "";
-//                     pizzaTypes.forEach(element => {

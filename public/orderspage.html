@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 
-<head>
+<head >
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=\, initial-scale=1.0">
@@ -12,17 +12,17 @@
     <link rel="stylesheet" href="loginCSS.css">
 </head>
 
-<body>
-
+<body >
     <footer class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
-        <div class="w3-row-padding">
+        <div class="w3-row-padding" >
             <h4>Orders</h4>
-                <label for="orders">All orders:</label>
-                <button class="w3-button w3-margin-bottom" onclick="getOrders()">Get All Orders</button>
                 <table id="orderTable"></table>
+                <form id="updatOrder" action='/updateStatus' method="post">
+                    <input type="text" id="orderid" class="fadeIn second" name="orderid" placeholder="deliverd order ID">
+                    <input type="submit" class="fadeIn fourth" value="Update status" onclick="loadOrders()">
+                </form>
                 </div>
-    </footer>
-
+            </footer>
 
 </body>
 

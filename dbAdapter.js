@@ -1,4 +1,6 @@
 const bcrypt = require('bcrypt');
+const { ObjectId } = require('mongodb');
+var ObjectID = require('mongodb').ObjectID;
 var MongoClient = require('mongodb').MongoClient;
 var url = "mongodb+srv://EilonChabner:TimNimrodEilon1@cluster0.2978k.mongodb.net/test";
 const client = new MongoClient(url);
@@ -154,8 +156,8 @@ async function updateStatus(id){
         const database = client.db("WaterSportCenter");
       const haiku = database.collection("orders");
       console.log('step 3:  ' + id)
-    let result = await haiku.updateOne({_id:id}, {$set: {Status:'Supplied'}});
-     
+    let result = await haiku.updateOne({_id:ObjectId(id)}, {$set: {Status:'Supplied'}});
+     console.log('order updated')
       } catch (e) {
           console.error(e);
       } finally {
