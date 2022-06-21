@@ -1,8 +1,10 @@
 const express = require('express');
+const bcrypt = require('bcrypt')
 const db_adapter = require("./dbAdapter");
 const app = express();
 const port = 3000;
-const bodyParser = require('body-parser')
+const bodyParser = require('body-parser');
+const storage = require('node-sessionstorage');
 
 
 app.use(bodyParser.json())
@@ -33,10 +35,8 @@ app.post('/register.html', async (req, res) => {
 
 app.post('/login.html', async (req, res) => {
   try {
-   const hashedPassword = await bcrypt.hash(req.body.password, 10);
    const result = db_adapter.checkUser(req.body.username,req.body.password);
    if (result) {
-    window.sessionStorage.setItem("username", result);
     res.redirect('/index.html');
    }
    else {
