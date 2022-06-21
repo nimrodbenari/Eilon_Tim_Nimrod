@@ -126,7 +126,7 @@ async function getOrders(){
     return result;
 }
 
-async function insertOrder(productmodel,customername,shipingaddres,phonenumber,email,cardnumber,cvv,expire){
+async function insertOrder(productmodel,customername,shipingaddres,phonenumber,email,cardnumber,cvv,expire,status){
     
     try {
         // Connect to the MongoDB cluster
@@ -135,9 +135,26 @@ async function insertOrder(productmodel,customername,shipingaddres,phonenumber,e
       const haiku = database.collection("orders");
     
       // create a document to insert
-      const doc = {Productmodel:productmodel,Customer_name:customername, shiping_addres:shipingaddres, phone_number:phonenumber,Email:email, card_number:cardnumber, Cvv:cvv,Expire:expire};
+      const doc = {Productmodel:productmodel,Customer_name:customername, shiping_addres:shipingaddres, phone_number:phonenumber,Email:email, card_number:cardnumber, Cvv:cvv,Expire:expire, Status:status};
       
       let result = await haiku.insertOne(doc);
+     
+      } catch (e) {
+          console.error(e);
+      } finally {
+          await client.close();
+      }
+}
+
+async function updateStatus(id){
+    
+    try {
+        // Connect to the MongoDB cluster
+        await client.connect();
+        const database = client.db("WaterSportCenter");
+      const haiku = database.collection("orders");
+      console.log('step 3:  ' + id)
+    let result = await haiku.updateOne({_id:id}, {$set: {Status:'Supplied'}});
      
       } catch (e) {
           console.error(e);
@@ -154,3 +171,5 @@ exports.checkUser = checkUser;
 exports.insertProduct = insertProduct;
 exports.insertOrder = insertOrder;
 exports.updateQuantity= updateQuantity;
+exports.updateStatus= updateStatus;
+

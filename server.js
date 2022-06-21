@@ -3,6 +3,12 @@ const bcrypt = require('bcrypt');
 const db_adapter = require("./dbAdapter");
 const app = express();
 const port = 3000;
+const bodyParser = require('body-parser')
+
+
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded({ extended: true}))
+
 
 app.use(express.static('public'))
 
@@ -55,7 +61,7 @@ app.post('/mangerpage.html', async (req, res) => {
 
 app.post('/neworder.html', async (req, res) => {
   try {
-   db_adapter.insertOrder(req.body.productmodel,req.body.customername,req.body.shipingaddres,req.body.phonenumber,req.body.email,req.body.cardnumber,req.body.cvv,req.body.expire);
+   db_adapter.insertOrder(req.body.productmodel,req.body.customername,req.body.shipingaddres,req.body.phonenumber,req.body.email,req.body.cardnumber,req.body.cvv,req.body.expire,req.body.status);
    db_adapter.updateQuantity(req.body.productmodel);
    res.redirect('/index.html')
     console.log('new order inserted')
@@ -83,4 +89,14 @@ app.get('/getproducts',(req, res) => {
 
 app.listen(port, () => {
   console.log(`http://localhost:${port}`)
+})
+
+
+app.post('/updateStatus', async (req, res) => {
+  try {
+   db_adapter.updateStatus(req.body);
+   console.log('step 2:   '+req.body)
+  } catch  {
+    console.log('not updated')
+  }
 })
