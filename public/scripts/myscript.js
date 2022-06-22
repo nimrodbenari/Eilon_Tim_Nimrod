@@ -190,3 +190,8 @@ function NewOrder(model){
       document.getElementById("productmodel").innerHTML=model;
   });
 }
+
+
+  function sendMessage(){
+    fetch("http://localhost:3000/sendMessage");
+}
