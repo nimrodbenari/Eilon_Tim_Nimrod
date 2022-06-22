@@ -5,24 +5,14 @@ const db_adapter = require("./dbAdapter");
 const app = express();
 const port = 3000;
 const bodyParser = require('body-parser');
-const storage = require('node-sessionstorage');
 
-
+// ----------------APP USE-----------------------
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true}))
-
 app.use(express.static('public'))
-
 app.use(express.urlencoded({ extended: false}))
 
-app.get('/login', (req, res) => {
-  res.render('login.html');
-})
-
-app.get('/register', (req, res) => {
-  res.render('register.html')
-})
-
+// ----------------POST ROUTERS-----------------------
 app.post('/register', async (req, res) => {
   try {
    const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -71,28 +61,6 @@ app.post('/neworder', async (req, res) => {
   }
 })
 
-
-
-app.get('/getproducts',(req, res) => {  
-  db_adapter.getProducts()
-  .then(function(response){
-    res.send(response)
-   })
-  })
-
-  app.get('/getorders',(req, res) => {  
-    db_adapter.getOrders()
-    .then(function(response){
-      res.send(response)
-     })
-    })
-
-  app.get('/sendMessage',(req, res) => {  
-    sendMessage()
-     })
-    
-
-
 app.post('/updateStatus', async (req, res) => {
   try {
    db_adapter.updateStatus(req.body.orderid);
@@ -100,8 +68,34 @@ app.post('/updateStatus', async (req, res) => {
     console.log('not updated')
   }
 })
+// ----------------GET ROUTERS-----------------------
+app.get('/getproducts',(req, res) => {  
+  db_adapter.getProducts()
+  .then(function(response){
+    res.send(response)
+   })
+})
 
+app.get('/getorders',(req, res) => {  
+    db_adapter.getOrders()
+    .then(function(response){
+      res.send(response)
+     })
+})
 
+app.get('/sendMessage',(req, res) => {  
+    sendMessage()
+})
+
+app.get('/login', (req, res) => {
+  res.render('login.html');
+})
+
+app.get('/register', (req, res) => {
+  res.render('register.html')
+})
+
+// -----------LISTEN---------
 app.listen(port, () => {
   console.log(`http://localhost:${port}`)
 })
