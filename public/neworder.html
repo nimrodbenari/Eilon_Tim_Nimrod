@@ -20,17 +20,17 @@
             <h2 class="active"> Make Your Order </h2>
 
             <!-- register Form -->
-            <form id="Neworder" action='/neworder.html' method="post" >
-                <lable id="productmodel"  name="productmodel"></lable><br><br>
-                <input type="text" id="productmodel"  name="productmodel" value="productmodel" >
+            <form id="Neworder" onsubmit="orderDetails()" >
+                
                 <input type="text" id="customername" class="fadeIn second" name="customername" placeholder="Full Name">
+                <input type="text" id="quantity" class="fadeIn second" name="quantity" placeholder="Quantity">
                 <input type="text" id="shipingaddres" class="fadeIn second" name="shipingaddres" placeholder="Shiping Addres">
                 <input type="text" id="phonenumber" class="fadeIn second" name="phonenumber" placeholder="Phone number">
                 <input type="text" id="email" class="fadeIn third" name="email" placeholder="Email">
+                <p>Payment Details</p>
                 <input type="text" id="cardnumber" class="fadeIn second" name="cardnumber" placeholder="Card number">
                 <input type="text" id="cvv" class="fadeIn second" name="cvv" placeholder="CVV">
                 <input type="text" id="expire" class="fadeIn second" name="expire" placeholder="mm/yy">
-                <input type="text" id="status" class="fadeIn second" name="status" value="in-procces">
                 <input type="submit" class="fadeIn fourth" value="Submit">
             <!-- go to login-->
             <div id="formFooter">

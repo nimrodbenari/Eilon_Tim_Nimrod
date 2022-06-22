@@ -166,13 +166,18 @@ function getOrders()
 function createOrdersTable(data)
 { 
  var ourTable=document.getElementById("orderTable");
- theHTML="<tr><th>Order ID</th><th>Productmodel</th><th>Customer name</th><th>shiping addres</th><th>phone number</th><th>Email</th><th>card number</th><th>Cvv</th><th>Expire</th><th>Status</th></tr>"
+ theHTML="<tr><th>Order ID</th><th>Productmodel</th><th>Quantity</th><th>Customer name</th><th>shiping addres</th><th>phone number</th><th>Email</th><th>card number</th><th>Cvv</th><th>Expire</th><th>Status</th></tr>"
     data.forEach(order => {
-    newHtml=`<tr><td>${order._id}</td><td>${order.Productmodel}
-    </td><td>${order.Customer_name}</td>
-    <td>${order.shiping_addres}</td><td>${order.phone_number}</td>
-    <td>${order.Email}</td><td>${order.card_number}</td>
-    <td>${order.Cvv}</td><td>${order.Expire}</td><td>${order.Status}</td></tr>`   
+    newHtml=`<tr><td>${order._id}</td><td>${order.productmodel}</td>
+    <td>${order.quantity}</td>
+    <td>${order.customername}</td>
+    <td>${order.shipingaddres}</td>
+    <td>${order.phone_number}</td>
+    <td>${order.email}</td>
+    <td>${order.cardnumber}</td>
+    <td>${order.cvv}</td>
+    <td>${order.expire}</td>
+    <td>${order.status}</td></tr>`   
     theHTML+=newHtml
 
  });   
@@ -187,6 +192,93 @@ function NewOrder(model){
   })
   .then(function(html){
       document.getElementById("renderPage").innerHTML=html;
-      document.getElementById("productmodel").innerHTML=model;
-  });
+  }).then(sessionStorage.setItem('model',model));
+}
+
+function orderDetails() {
+  var customername = document.getElementById("customername").value;
+  var quantity = document.getElementById("quantity").value;
+  var shipingaddres = document.getElementById("shipingaddres").value;
+  var phonenumber = document.getElementById("phonenumber").value;
+  var email = document.getElementById("email").value;
+  var cardnumber = document.getElementById("cardnumber").value;
+  var cvv = document.getElementById("cvv").value;
+  var expire = document.getElementById("expire").value;
+  var productmodel = sessionStorage.getItem('model');
+  var status = 'on-process'
+
+  const order = {
+    'customername':customername,
+    'quantity':quantity,
+    'shipingaddres':shipingaddres,
+    'email':email,
+    'phonenumber':phonenumber,
+    'cardnumber':cardnumber,
+    'cvv':cvv,
+    'expire':expire,
+    'cvv':cvv,
+    'status':status,
+    'productmodel':productmodel,
+    'status': status
+  };
+  
+  fetch("/neworder",{
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: "POST",
+    body: JSON.stringify(order)
+})
+.then(function(res){ console.log(res) })
+.catch(function(res){ console.log(res) })
+.then(sessionStorage.clear());
+}
+
+function userDetails() {
+  var username = document.getElementById("username").value;
+  var password = document.getElementById("password").value;
+  var email = document.getElementById("email").value;
+  var rolle = 'customer'
+
+  const user = {
+    'username':username,
+    'password':password,
+    'email':email,
+    'rolle':rolle,
+  };
+  
+  fetch("/register",{
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: "POST",
+    body: JSON.stringify(user)
+})
+.then(function(res){ console.log(res) })
+.catch(function(res){ console.log(res) })
+}
+
+function loginUser() {
+  var username = document.getElementById("username").value;
+  var password = document.getElementById("password").value;
+  var rolle = 'customer'
+
+  const user = {
+    'username':username,
+    'password':password
+  };
+  
+  fetch("/login",{
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: "POST",
+    body: JSON.stringify(user)
+})
+.then(function(res){ console.log(res) })
+.catch(function(res){ console.log(res) })
+
 }

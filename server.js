@@ -23,27 +23,28 @@ app.get('/register', (req, res) => {
   res.render('register.html')
 })
 
-app.post('/register.html', async (req, res) => {
+app.post('/register', async (req, res) => {
   try {
    const hashedPassword = await bcrypt.hash(req.body.password, 10);
-   db_adapter.sendUser(req.body.username,req.body.email,hashedPassword);
+   db_adapter.sendUser(req.body.username,req.body.email,req.body.rolle,hashedPassword);
    res.redirect('/login.html')
   } catch  {
     res.redirect('/register.html')
   }
 }) 
 
-app.post('/login.html', async (req, res) => {
+app.post('/login', async (req, res) => {
   try {
    const result = db_adapter.checkUser(req.body.username,req.body.password);
-   if (result) {
+   if (result=='manager') {
     res.redirect('/index.html');
    }
    else {
-    console.log('no customer was found 1 ')
+    console.log('customer was found')
    }
   } catch (error) {
-    res.redirect('/index.html')
+    res.redirect('/index.html');
+    console.log(error)
   }
 }) 
 
@@ -58,10 +59,10 @@ app.post('/mangerpage.html', async (req, res) => {
   }
 })
 
-app.post('/neworder.html', async (req, res) => {
+app.post('/neworder', async (req, res) => {
   try {
-   db_adapter.insertOrder(req.body.productmodel,req.body.customername,req.body.shipingaddres,req.body.phonenumber,req.body.email,req.body.cardnumber,req.body.cvv,req.body.expire,req.body.status);
-   db_adapter.updateQuantity(req.body.productmodel);
+   db_adapter.insertOrder(req.body);
+   db_adapter.updateQuantity(req.body.productmodel,req.body.quantity);
    res.redirect('/index.html')
     console.log('new order inserted')
   } catch  {

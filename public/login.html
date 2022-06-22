@@ -22,10 +22,7 @@
 
 
             <!-- Login Form -->
-            <script>if (messages.error) {
-                messages.error
-            }</script>
-            <form id="login" action='/login.html' method="post" class="modal">
+            <form id="login" onsubmit="loginUser()">
             
                 <input type="text" id="username" class="fadeIn second" name="username" placeholder="User Name">
                 <input type="password" id="password" class="fadeIn third" name="password" placeholder="password">

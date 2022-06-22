@@ -6,7 +6,7 @@ var url = "mongodb+srv://EilonChabner:TimNimrodEilon1@cluster0.2978k.mongodb.net
 const client = new MongoClient(url);
 
 //---------- user managment section-----------------------
-async function SendUser(name,email,hashedPassword){
+async function SendUser(name,email,rolle,hashedPassword){
   try {
       // Connect to the MongoDB cluster
       await client.connect();
@@ -14,7 +14,7 @@ async function SendUser(name,email,hashedPassword){
       const database = client.db("WaterSportCenter");
     const haiku = database.collection("customers");
     // create a document to insert
-    const doc = { user_name: name, Email: email,password:hashedPassword }
+    const doc = { user_name: name, Email: email,rolle:rolle,password:hashedPassword }
     const result = await haiku.insertOne(doc);
     console.log(`A customer was inserted with the _id: ${result.insertedId}`);
     } catch (e) {
@@ -25,6 +25,7 @@ async function SendUser(name,email,hashedPassword){
 }
 async function checkUser(name,password){
     let user;
+    let rolle
   try {
       // Connect to the MongoDB cluster
       await client.connect();
@@ -34,7 +35,6 @@ async function checkUser(name,password){
     // create a document to insert
     const doc = {user_name: name};
     user = await collection.findOne(doc);
-    console.log(user);
     if (bcrypt.compare(password,user.password)){
         console.log('password is correct')
     } else {
@@ -42,13 +42,16 @@ async function checkUser(name,password){
         return "";
     }
     console.log(`A customer was founded with the name: ${doc.user_name}`);
-
+    rolle = user.rolle;
     } catch (e) {
         console.error(e);
         console.log(`A customer was'nt found`);
     } finally {
         await client.close();
     }
+    console.log(rolle);
+    return rolle;
+    
 }
 //---------- products managment section-----------------------
 async function insertProduct(productname,productprice,quantity,category,url){
@@ -90,7 +93,7 @@ async function getProducts(){
     return result;
 }
 
-async function updateQuantity(productmodel){
+async function updateQuantity(productmodel,quantity){
     
     try {
         // Connect to the MongoDB cluster
@@ -100,7 +103,7 @@ async function updateQuantity(productmodel){
     
     let unitInStock = await haiku.findOne({model: productmodel});
     let updateQuan = parseInt( unitInStock.quantity);
-    updateQuan-=1;
+    updateQuan-=quantity;
     let result = await haiku.updateOne({model: productmodel}, {$set: {quantity:updateQuan }});
      
       } catch (e) {
@@ -128,7 +131,7 @@ async function getOrders(){
     return result;
 }
 
-async function insertOrder(productmodel,customername,shipingaddres,phonenumber,email,cardnumber,cvv,expire,status){
+async function insertOrder(order){
     
     try {
         // Connect to the MongoDB cluster
@@ -137,7 +140,7 @@ async function insertOrder(productmodel,customername,shipingaddres,phonenumber,e
       const haiku = database.collection("orders");
     
       // create a document to insert
-      const doc = {Productmodel:productmodel,Customer_name:customername, shiping_addres:shipingaddres, phone_number:phonenumber,Email:email, card_number:cardnumber, Cvv:cvv,Expire:expire, Status:status};
+      const doc = order;
       
       let result = await haiku.insertOne(doc);
      
@@ -156,7 +159,7 @@ async function updateStatus(id){
         const database = client.db("WaterSportCenter");
       const haiku = database.collection("orders");
       console.log('step 3:  ' + id)
-    let result = await haiku.updateOne({_id:ObjectId(id)}, {$set: {Status:'Supplied'}});
+    let result = await haiku.updateOne({_id:ObjectId(id)}, {$set: {status:'Supplied'}});
      console.log('order updated')
       } catch (e) {
           console.error(e);
