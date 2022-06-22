@@ -282,3 +282,8 @@ function loginUser() {
 .catch(function(res){ console.log(res) })
 
 }
+
+
+  function sendMessage(){
+    fetch("http://localhost:3000/sendMessage");
+}

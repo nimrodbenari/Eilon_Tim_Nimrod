@@ -1,3 +1,4 @@
+const {sendMessage} = require("./send-whatsapp");
 const express = require('express');
 const bcrypt = require('bcrypt')
 const db_adapter = require("./dbAdapter");
@@ -9,7 +10,6 @@ const storage = require('node-sessionstorage');
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true}))
-
 
 app.use(express.static('public'))
 
@@ -87,9 +87,10 @@ app.get('/getproducts',(req, res) => {
      })
     })
 
-app.listen(port, () => {
-  console.log(`http://localhost:${port}`)
-})
+  app.get('/sendMessage',(req, res) => {  
+    sendMessage()
+     })
+    
 
 
 app.post('/updateStatus', async (req, res) => {
@@ -99,3 +100,9 @@ app.post('/updateStatus', async (req, res) => {
     console.log('not updated')
   }
 })
+
+
+app.listen(port, () => {
+  console.log(`http://localhost:${port}`)
+})
+
