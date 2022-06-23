@@ -105,17 +105,17 @@
       </div>`   
       theHtml+=newHtml
 
-        } else {
-          newHtml=`<div class="w3-col l3 s6" style="background-color: white;">
-        <div class="w3-display-container">
-          <img id="boards" src="${product.img}">
-          <span class="w3-tag w3-display-topleft">New</span>
-          <div class="w3-display-middle w3-display-hover">
-          </div>
-        </div>
-        <p>${product.model}<br><b>${product.price}</b><b><br><lable>Unit in stock: </lable>${product.quantity}</b></p>
-      </div>`   
-      theHtml+=newHtml
+      //   } else {
+      //     newHtml=`<div class="w3-col l3 s6" style="background-color: white;">
+      //   <div class="w3-display-container">
+      //     <img id="boards" src="${product.img}">
+      //     <span class="w3-tag w3-display-topleft">New</span>
+      //     <div class="w3-display-middle w3-display-hover">
+      //     </div>
+      //   </div>
+      //   <p>${product.model}<br><b>${product.price}</b><b><br><lable>Unit in stock: </lable>${product.quantity}</b></p>
+      // </div>`   
+      // theHtml+=newHtml
         }
      });   
      ourDiv.innerHTML=theHtml
@@ -231,7 +231,8 @@ function orderDetails() {
 })
 .then(function(res){ console.log(res) })
 .catch(function(res){ console.log(res) })
-.then(sessionStorage.clear());
+sessionStorage.clear();
+alert('Your order has been successfully saved');
 }
 
 function userDetails() {

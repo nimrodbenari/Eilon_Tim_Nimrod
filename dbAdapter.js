@@ -50,6 +50,7 @@ async function checkUser(name,password){
         await client.close();
     }
     console.log(rolle);
+    
     return rolle;
     
 }
@@ -141,8 +142,10 @@ async function insertOrder(order){
     
       // create a document to insert
       const doc = order;
-      
       let result = await haiku.insertOne(doc);
+      let model = doc.productmodel;
+      let quantity =  doc.quantity;
+      await updateQuantity(model,quantity);
      
       } catch (e) {
           console.error(e);

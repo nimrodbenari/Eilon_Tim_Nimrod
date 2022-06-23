@@ -52,7 +52,6 @@ app.post('/mangerpage.html', async (req, res) => {
 app.post('/neworder', async (req, res) => {
   try {
    db_adapter.insertOrder(req.body);
-   db_adapter.updateQuantity(req.body.productmodel,req.body.quantity);
    res.redirect('/index.html')
     console.log('new order inserted')
   } catch  {
