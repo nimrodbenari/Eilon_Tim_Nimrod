@@ -54,7 +54,7 @@
     }
     
     function loadRegister(){
-      fetch("http://localhost:3000/register.html")
+      fetch("https://surf-center.herokuapp.com//register.html")
       .then(function(response){
           return response.text()
       })
