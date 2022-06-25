@@ -33,7 +33,7 @@
     }
 
     function loadHome(){
-      fetch("http://localhost:3000/homepage.html")
+      fetch("https://surf-center.herokuapp.com/homepage.html")
       .then(function(response){
           return response.text()
       })
@@ -43,7 +43,7 @@
   }
   
   function loadLogin(){
-      fetch("http://localhost:3000/login.html")
+      fetch("https://surf-center.herokuapp.com/login.html")
       .then(function(response){
           return response.text()
       })
@@ -54,7 +54,7 @@
     }
     
     function loadRegister(){
-      fetch("http://localhost:3000/register.html")
+      fetch("https://surf-center.herokuapp.com/register.html")
       .then(function(response){
           return response.text()
       })
@@ -65,7 +65,7 @@
     }
 
     function loadmangerpage(){
-      fetch("http://localhost:3000/mangerpage.html")
+      fetch("https://surf-center.herokuapp.com/mangerpage.html")
       .then(function(response){
           return response.text()
       })
@@ -76,7 +76,7 @@
     }
 
     function loadOrders(){
-      fetch("http://localhost:3000/orderspage.html")
+      fetch("https://surf-center.herokuapp.com/orderspage.html")
       .then(function(response){
           return response.text()
       })
@@ -287,5 +287,5 @@ function loginUser() {
 }
 
   function sendMessage(){
-    fetch("http://localhost:3000/sendMessage");
+    fetch("https://surf-center.herokuapp.com/sendMessage");
 }
