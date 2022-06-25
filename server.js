@@ -67,6 +67,14 @@ app.post('/updateStatus', async (req, res) => {
     console.log('not updated')
   }
 })
+
+app.post('/newsletter', async (req, res) => {
+  try {
+   db_adapter.sendNewsEmail(req.body.Email);
+  } catch  {
+    console.log('not updated')
+  }
+})
 // ----------------GET ROUTERS-----------------------
 app.get('/getproducts',(req, res) => {  
   db_adapter.getProducts()

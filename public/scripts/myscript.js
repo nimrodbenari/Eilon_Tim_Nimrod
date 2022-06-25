@@ -294,3 +294,20 @@ function loginUser() {
   function sendMessage(){
     fetch("/sendMessage");
 }
+
+function newemailtonews() {
+  var email = document.getElementById("email").value;
+  const useremail = {Email:email}
+  
+  fetch("/newsletter",{
+    headers: {
+      'Accept': 'application/json',
+      'Content-Type': 'application/json'
+    },
+    method: "POST",
+    body: JSON.stringify(useremail)
+})
+.then(function(res){ console.log(res) })
+.catch(function(res){ console.log(res) })
+
+}

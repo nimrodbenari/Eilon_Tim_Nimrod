@@ -54,6 +54,23 @@ async function checkUser(name,password){
     return rolle;
     
 }
+async function sendNewsEmail(email){
+    try {
+        // Connect to the MongoDB cluster
+        await client.connect();
+  
+        const database = client.db("WaterSportCenter");
+      const haiku = database.collection("newsletterUsers");
+      // create a document to insert
+      const doc = {Email: email}
+      const result = await haiku.insertOne(doc);
+      console.log(`A email was inserted `);
+      } catch (e) {
+          console.error(e);
+      } finally {
+          await client.close();
+      }
+  }
 //---------- products managment section-----------------------
 async function insertProduct(productname,productprice,quantity,category,url){
     
@@ -180,4 +197,5 @@ exports.insertProduct = insertProduct;
 exports.insertOrder = insertOrder;
 exports.updateQuantity= updateQuantity;
 exports.updateStatus= updateStatus;
+exports.sendNewsEmail= sendNewsEmail;
 
