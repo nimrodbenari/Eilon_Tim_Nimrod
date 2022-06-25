@@ -232,7 +232,9 @@ function orderDetails() {
 .then(function(res){ console.log(res) })
 .catch(function(res){ console.log(res) })
 sessionStorage.clear();
+// sendMessage();
 alert('Your order has been successfully saved');
+
 }
 
 function userDetails() {
@@ -258,6 +260,7 @@ function userDetails() {
 })
 .then(function(res){ console.log(res) })
 .catch(function(res){ console.log(res) })
+
 }
 
 function loginUser() {
