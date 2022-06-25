@@ -33,7 +33,7 @@
     }
 
     function loadHome(){
-      fetch("https://surf-center.herokuapp.com/homepage.html")
+      fetch("/homepage.html")
       .then(function(response){
           return response.text()
       })
@@ -43,7 +43,7 @@
   }
   
   function loadLogin(){
-      fetch("https://surf-center.herokuapp.com/login.html")
+      fetch("/login.html")
       .then(function(response){
           return response.text()
       })
@@ -54,7 +54,7 @@
     }
     
     function loadRegister(){
-      fetch("https://surf-center.herokuapp.com/register.html")
+      fetch("/register.html")
       .then(function(response){
           return response.text()
       })
@@ -65,7 +65,7 @@
     }
 
     function loadmangerpage(){
-      fetch("https://surf-center.herokuapp.com/mangerpage.html")
+      fetch("/mangerpage.html")
       .then(function(response){
           return response.text()
       })
@@ -76,7 +76,7 @@
     }
 
     function loadOrders(){
-      fetch("https://surf-center.herokuapp.com/orderspage.html")
+      fetch("/orderspage.html")
       .then(function(response){
           return response.text()
       })
@@ -94,11 +94,11 @@
         data.forEach(product => {if ((product.category==category || category==null )&& product.quantity!= 0 ) {
         
         newHtml=`<div class="w3-col l3 s6" style="background-color: white;">
-        <div class="w3-display-container">
-          <img id="boards" src="${product.img}">
-          <span class="w3-tag w3-display-topleft">New</span>
-          <div class="w3-display-middle w3-display-hover">
-          <button class="w3-button w3-black" onclick="NewOrder('${product.model}')" >Buy now <i class="fa fa-shopping-cart" ></i></button>
+                <div class="w3-display-container">
+                  <img id="boards" src="${product.img}">
+                  <span class="w3-tag w3-display-topleft">New</span>
+                  <div class="w3-display-middle w3-display-hover">
+                <button class="w3-button w3-black" onclick="NewOrder('${product.model}')" >Buy now <i class="fa fa-shopping-cart" ></i></button>
           </div>
         </div>
         <p>${product.model}<br><b>${product.price}</b><b><br><lable>Unit in stock: </lable>${product.quantity}</b></p>
@@ -126,7 +126,11 @@
    var ourTable=document.getElementById("theTable");
    theHTML="<tr><th>שם מוצר </th><th>מחיר</th><th>כמות</th><th>קטגוריה</th></tr>"
       data.forEach(product => {
-      newHtml=`<tr><td>${product.product_name}</td><td>${product.product_price}</td><td>${product.Quantity}</td><td>${product.Category}</td></tr>`   
+      newHtml=`<tr>
+      <td>${product.product_name}</td>
+      <td>${product.product_price}</td>
+      <td>${product.Quantity}</td>
+      <td>${product.Category}</td></tr>`   
       theHTML+=newHtml
  
    });   
@@ -185,7 +189,7 @@ function createOrdersTable(data)
 
 
 function NewOrder(model){
-  fetch("http://localhost:3000/neworder.html")
+  fetch("/neworder.html")
   .then(function(response){
       return response.text()
   })
@@ -230,9 +234,10 @@ function orderDetails() {
     body: JSON.stringify(order)
 })
 .then(function(res){ console.log(res) })
-.catch(function(res){ console.log(res) })
+.catch(function(res){ console.log(res) });
+
+sendMessage();
 sessionStorage.clear();
-// sendMessage();
 alert('Your order has been successfully saved');
 
 }
@@ -287,5 +292,5 @@ function loginUser() {
 }
 
   function sendMessage(){
-    fetch("https://surf-center.herokuapp.com/sendMessage");
+    fetch("/sendMessage");
 }
