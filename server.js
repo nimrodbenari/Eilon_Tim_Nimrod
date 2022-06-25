@@ -75,6 +75,17 @@ app.post('/newsletter', async (req, res) => {
     console.log('not updated')
   }
 })
+
+app.post('/homepage.html', async (req, res) => {
+  try {
+   db_adapter.newContact(req.body.Name,req.body.Email,req.body.Subject,req.body.Message);
+   res.redirect('/index.html')
+   console.log('inserted')
+  } catch  {
+    console.log('no products was inserted')
+    res.redirect('/index.html')
+  }
+})
 // ----------------GET ROUTERS-----------------------
 app.get('/getproducts',(req, res) => {  
   db_adapter.getProducts()

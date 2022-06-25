@@ -188,6 +188,25 @@ async function updateStatus(id){
       }
 }
 
+
+async function newContact(Name,Email,Subject,Message){
+    
+    try {
+        // Connect to the MongoDB cluster
+        await client.connect();
+        const database = client.db("WaterSportCenter");
+      const haiku = database.collection("contactUs");
+      // create a document to insert
+      const doc = {Name: Name, Email: Email,Subject: Subject,Message: Message}
+      let result = await haiku.insertOne(doc);
+      console.log(doc);
+      } catch (e) {
+          console.error(e);
+      } finally {
+          await client.close();
+      }
+}
+
 //----------  exports section-----------------------
 exports.getProducts = getProducts;
 exports.getOrders = getOrders;
@@ -198,4 +217,4 @@ exports.insertOrder = insertOrder;
 exports.updateQuantity= updateQuantity;
 exports.updateStatus= updateStatus;
 exports.sendNewsEmail= sendNewsEmail;
-
+exports.newContact= newContact;
