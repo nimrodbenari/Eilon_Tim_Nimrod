@@ -54,7 +54,7 @@
     }
     
     function loadRegister(){
-      fetch("https://surf-center.herokuapp.com//register.html")
+      fetch("https://surf-center.herokuapp.com/register.html")
       .then(function(response){
           return response.text()
       })
