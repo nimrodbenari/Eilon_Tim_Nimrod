@@ -3,7 +3,7 @@ const express = require('express');
 const bcrypt = require('bcrypt')
 const db_adapter = require("./dbAdapter");
 const app = express();
-const port = process.env.PORT || 5000;
+const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 
 // ----------------APP USE-----------------------
