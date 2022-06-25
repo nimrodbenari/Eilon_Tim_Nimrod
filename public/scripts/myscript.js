@@ -311,3 +311,4 @@ function newemailtonews() {
 .catch(function(res){ console.log(res) })
 
 }
+
