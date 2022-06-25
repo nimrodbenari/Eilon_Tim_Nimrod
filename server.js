@@ -70,7 +70,7 @@ app.post('/updateStatus', async (req, res) => {
 
 app.post('/newsletter', async (req, res) => {
   try {
-   db_adapter.sendNewsEmail(req.body.email);
+   db_adapter.sendNewsEmail(req.body.Email);
   } catch  {
     console.log('not updated')
   }
