@@ -173,7 +173,7 @@ function getOrders()
 function createOrdersTable(data)
 { 
  var ourTable=document.getElementById("orderTable");
- theHTML="<tr><th>Order ID</th><th>Productmodel</th><th>Quantity</th><th>Customer name</th><th>shiping addres</th><th>phone number</th><th>Email</th><th>card number</th><th>Cvv</th><th>Expire</th><th>Status</th></tr>"
+ theHTML="<tr><th>Order ID</th><th>Productmodel</th><th>Quantity</th><th>Customer name</th><th>shiping addres</th><th>phone number</th><th>Email</th><th>Status</th></tr>"
     data.forEach(order => {
     newHtml=`<tr><td>${order._id}</td><td>${order.productmodel}</td>
     <td>${order.quantity}</td>
@@ -181,9 +181,6 @@ function createOrdersTable(data)
     <td>${order.shipingaddres}</td>
     <td>${order.phone_number}</td>
     <td>${order.email}</td>
-    <td>${order.cardnumber}</td>
-    <td>${order.cvv}</td>
-    <td>${order.expire}</td>
     <td>${order.status}</td></tr>`   
     theHTML+=newHtml
 
@@ -277,26 +274,31 @@ function userDetails() {
 
 }
 
-function loginUser() {
+async function  loginUser() {
   var username = document.getElementById("username").value;
   var password = document.getElementById("password").value;
-  var rolle = 'customer'
 
-  const user = {
-    'username':username,
-    'password':password
-  };
-  
-  fetch("/login",{
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    method: "POST",
-    body: JSON.stringify(user)
-})
-.then(function(res){ console.log(res) })
-.catch(function(res){ console.log(res) })
+  const user = {'username':username,'password':password};
+  const response = await fetch("/login",{
+                                headers: {
+                                  'Content-Type': 'application/json'
+                                },
+                                redirect: 'follow',
+                                method: "POST",
+                                body: JSON.stringify(user)
+                            });
+
+console.log('script got the res');
+console.log(response);
+if (response.url == 'http://localhost:3000/orderspage.html') {
+  alert('Sending you to manager page');
+  loadOrders();
+  sessionStorage.setItem('userloged','true')
+}else{
+  alert('Try Again');
+  loadLogin();
+}
+
 
 }
 

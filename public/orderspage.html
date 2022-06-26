@@ -13,7 +13,8 @@
 </head>
 
 <body >
-    <footer class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer">
+    <div id="mangerPageDiv">
+    <footer class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer_3">
         <div class="w3-row-padding" >
             <h4>Orders Table</h4>
                 <table id="orderTable"></table>
@@ -22,7 +23,27 @@
                     <input type="submit" class="fadeIn fourth" value="Update status" onclick="loadOrders()">
                 </form>
                 </div>
+                
             </footer>
+            <footer class="w3-padding-64 w3-light-grey w3-small w3-center" id="footer_3">
+                <div class="w3-row-padding">
+                    <h4>Insert New Product</h4>
+                    <form id="Maneger" action='/mangerpage.html' method="post">
+                    
+                        <input type="text" id="productname" class="fadeIn second" name="productname" placeholder="Product Model">
+                        <input type="text" id="productprice" class="fadeIn second" name="productprice" placeholder="Product Price ">
+                        <input type="text" id="quantity" class="fadeIn second" name="quantity" placeholder="Quantity">
+                        <input type="text" id="category" class="fadeIn second" name="category" placeholder="Product Category">
+                        <input type="text" id="url" class="fadeIn second" name="url" placeholder="Upload Image url">
+                        <input type="submit" class="fadeIn fourth" value="Send Product">
+                    </form>
+                  </div>
+            </footer>
+        </div>
+
+
+
+            
 </body>
 
 </html>
