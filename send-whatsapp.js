@@ -7,7 +7,7 @@ const Ephone = '+972526336564';
 function sendMessage(){
 client.messages 
       .create({ 
-         body: 'New order was insrted, go check the details! https://surf-center.herokuapp.com/orderspage.html', 
+         body: 'New order was insrted, go check the details! https://surf-center.herokuapp.com/#', 
          from: 'whatsapp:+14155238886',       
          to: `whatsapp:${Ephone}` 
        }) 
@@ -16,7 +16,7 @@ client.messages
 
 client.messages 
       .create({ 
-         body: 'New order was insrted, go check the details! https://surf-center.herokuapp.com/orderspage.html', 
+         body: 'New order was insrted, go check the details! https://surf-center.herokuapp.com/#', 
          from: 'whatsapp:+14155238886',       
          to: `whatsapp:${Nphone}` 
        }) 

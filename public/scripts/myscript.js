@@ -290,7 +290,9 @@ async function  loginUser() {
 
 console.log('script got the res');
 console.log(response);
-if (response.url == 'http://localhost:3000/orderspage.html') {
+let url = response.url
+let urlArray = url.split('/')
+if (urlArray[2] == 'orderspage.html') {
   alert('Sending you to manager page');
   loadOrders();
   sessionStorage.setItem('userloged','true')
