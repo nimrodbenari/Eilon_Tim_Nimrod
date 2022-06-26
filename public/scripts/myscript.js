@@ -86,7 +86,23 @@
 
     }
 
-  
+    function createOrderDiv(){ 
+    var img = sessionStorage.getItem('img');
+    var price = sessionStorage.getItem('price');
+    var model = sessionStorage.getItem('model');
+    var ourDiv=document.getElementById("orderdisplay");
+     newHtml=`<div class="w3-col l3 s6" style="background-color: white;">
+     <div class="w3-display-container">
+       <img id="boards" src="${img}">
+       <div class="w3-display-middle w3-display-hover">
+        </div>
+        </div>
+        <p 
+        >${model}<br><b>${price}</b></p>
+        </div>`   
+     ourDiv.innerHTML=newHtml;
+    }
+
     function createDiv(data,category)
     { 
      var ourDiv=document.getElementById("theDiv");
@@ -98,24 +114,12 @@
                   <img id="boards" src="${product.img}">
                   <span class="w3-tag w3-display-topleft">New</span>
                   <div class="w3-display-middle w3-display-hover">
-                <button class="w3-button w3-black" onclick="NewOrder('${product.model}')" >Buy now <i class="fa fa-shopping-cart" ></i></button>
+                <button class="w3-button w3-black" onclick="NewOrder('${product.price}|${product.model}|${product.img}')" >Buy now <i class="fa fa-shopping-cart" ></i></button>
           </div>
         </div>
         <p>${product.model}<br><b>${product.price}</b><b><br><lable>Unit in stock: </lable>${product.quantity}</b></p>
       </div>`   
       theHtml+=newHtml
-
-      //   } else {
-      //     newHtml=`<div class="w3-col l3 s6" style="background-color: white;">
-      //   <div class="w3-display-container">
-      //     <img id="boards" src="${product.img}">
-      //     <span class="w3-tag w3-display-topleft">New</span>
-      //     <div class="w3-display-middle w3-display-hover">
-      //     </div>
-      //   </div>
-      //   <p>${product.model}<br><b>${product.price}</b><b><br><lable>Unit in stock: </lable>${product.quantity}</b></p>
-      // </div>`   
-      // theHtml+=newHtml
         }
      });   
      ourDiv.innerHTML=theHtml
@@ -188,16 +192,21 @@ function createOrdersTable(data)
 }
 
 
-function NewOrder(model){
+function NewOrder(data){
+  let array = data.split('|')
   fetch("/neworder.html")
   .then(function(response){
       return response.text()
   })
   .then(function(html){
       document.getElementById("renderPage").innerHTML=html;
-  }).then(sessionStorage.setItem('model',model));
+  }).then(
+    sessionStorage.setItem('price',array[0]),
+    sessionStorage.setItem('model',array[1]),
+    sessionStorage.setItem('img',array[2])
+    );
+    
 }
-
 function orderDetails() {
   var customername = document.getElementById("customername").value;
   var quantity = document.getElementById("quantity").value;

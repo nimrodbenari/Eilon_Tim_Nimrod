@@ -111,6 +111,16 @@ a.manager{
       height: 550px;
     }
     
+    #orderdisplay{
+      position: relative;
+      padding: auto;
+      left: 100px;
+    }
+    #orderdisplayP{
+      position: relative;
+      padding: auto;
+      left: 50px;
+    }
 
 
     

@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="loginCSS.css">
 </head>
 
-<body>
+<body onload="createOrderDiv()">
 
     <div class="wrapper fadeInDown">
         <div id="formContent">
@@ -20,8 +20,8 @@
             <h2 class="active"> Make Your Order </h2>
 
             <!-- register Form -->
-            <form id="Neworder" onsubmit="orderDetails()" >
-                
+                <p  style="cursor: pointer;" onclick="createOrderDiv()">Click here <br> If you are not sure</p>
+                <div id="orderdisplay"></div>
                 <input type="text" id="customername" class="fadeIn second" name="customername" placeholder="Full Name">
                 <input type="text" id="shipingaddres" class="fadeIn second" name="shipingaddres" placeholder="Shiping Addres">
                 <input type="text" id="phonenumber" class="fadeIn second" name="phonenumber" placeholder="Phone number">
