@@ -24,8 +24,7 @@ async function SendUser(name,email,rolle,hashedPassword){
     }
 }
 async function checkUser(name,password){
-    let user;
-    let rolle
+    let result = false;
   try {
       // Connect to the MongoDB cluster
       await client.connect();
@@ -37,21 +36,19 @@ async function checkUser(name,password){
     user = await collection.findOne(doc);
     if (bcrypt.compare(password,user.password)){
         console.log('password is correct')
+        result = true;
     } else {
         console.log(`password or username wrong`);
-        return "";
     }
     console.log(`A customer was founded with the name: ${doc.user_name}`);
-    rolle = user.rolle;
     } catch (e) {
         console.error(e);
         console.log(`A customer was'nt found`);
     } finally {
         await client.close();
     }
-    console.log(rolle);
     
-    return rolle;
+    return result;
     
 }
 async function sendNewsEmail(email){

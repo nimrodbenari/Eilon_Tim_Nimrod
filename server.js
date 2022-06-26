@@ -23,20 +23,7 @@ app.post('/register', async (req, res) => {
   }
 }) 
 
-app.post('/login', async (req, res) => {
-  try {
-   const result = db_adapter.checkUser(req.body.username,req.body.password);
-   if (result=='manager') {
-    res.redirect('/index.html');
-   }
-   else {
-    console.log('customer was found')
-   }
-  } catch (error) {
-    res.redirect('/index.html');
-    console.log(error)
-  }
-}) 
+
 
 app.post('/mangerpage.html', async (req, res) => {
   try {
@@ -112,6 +99,27 @@ app.get('/login', (req, res) => {
 app.get('/register', (req, res) => {
   res.render('register.html')
 })
+
+// users mangment section 
+
+app.get('/users', (req, res) => {
+  res.json(users)
+})
+
+app.post('/login', async (req, res) => {
+  try {
+    let result = await db_adapter.checkUser(req.body.username,req.body.password)
+  if(result == true){
+  return res.redirect('/orderspage.html');
+  }else{
+    return res.redirect('/index.html');
+  }
+
+  } catch (error) {
+    console.log(error)
+  }
+}) 
+
 
 // -----------LISTEN---------
 app.listen(port, () => {

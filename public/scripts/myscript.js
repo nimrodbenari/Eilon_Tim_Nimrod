@@ -86,7 +86,23 @@
 
     }
 
-  
+    function createOrderDiv(){ 
+    var img = sessionStorage.getItem('img');
+    var price = sessionStorage.getItem('price');
+    var model = sessionStorage.getItem('model');
+    var ourDiv=document.getElementById("orderdisplay");
+     newHtml=`<div class="w3-col l3 s6" style="background-color: white;">
+     <div class="w3-display-container">
+       <img id="boards" src="${img}">
+       <div class="w3-display-middle w3-display-hover">
+        </div>
+        </div>
+        <p 
+        >${model}<br><b>${price}</b></p>
+        </div>`   
+     ourDiv.innerHTML=newHtml;
+    }
+
     function createDiv(data,category)
     { 
      var ourDiv=document.getElementById("theDiv");
@@ -98,24 +114,12 @@
                   <img id="boards" src="${product.img}">
                   <span class="w3-tag w3-display-topleft">New</span>
                   <div class="w3-display-middle w3-display-hover">
-                <button class="w3-button w3-black" onclick="NewOrder('${product.model}')" >Buy now <i class="fa fa-shopping-cart" ></i></button>
+                <button class="w3-button w3-black" onclick="NewOrder('${product.price}|${product.model}|${product.img}')" >Buy now <i class="fa fa-shopping-cart" ></i></button>
           </div>
         </div>
         <p>${product.model}<br><b>${product.price}</b><b><br><lable>Unit in stock: </lable>${product.quantity}</b></p>
       </div>`   
       theHtml+=newHtml
-
-      //   } else {
-      //     newHtml=`<div class="w3-col l3 s6" style="background-color: white;">
-      //   <div class="w3-display-container">
-      //     <img id="boards" src="${product.img}">
-      //     <span class="w3-tag w3-display-topleft">New</span>
-      //     <div class="w3-display-middle w3-display-hover">
-      //     </div>
-      //   </div>
-      //   <p>${product.model}<br><b>${product.price}</b><b><br><lable>Unit in stock: </lable>${product.quantity}</b></p>
-      // </div>`   
-      // theHtml+=newHtml
         }
      });   
      ourDiv.innerHTML=theHtml
@@ -169,7 +173,7 @@ function getOrders()
 function createOrdersTable(data)
 { 
  var ourTable=document.getElementById("orderTable");
- theHTML="<tr><th>Order ID</th><th>Productmodel</th><th>Quantity</th><th>Customer name</th><th>shiping addres</th><th>phone number</th><th>Email</th><th>card number</th><th>Cvv</th><th>Expire</th><th>Status</th></tr>"
+ theHTML="<tr><th>Order ID</th><th>Productmodel</th><th>Quantity</th><th>Customer name</th><th>shiping addres</th><th>phone number</th><th>Email</th><th>Status</th></tr>"
     data.forEach(order => {
     newHtml=`<tr><td>${order._id}</td><td>${order.productmodel}</td>
     <td>${order.quantity}</td>
@@ -177,9 +181,6 @@ function createOrdersTable(data)
     <td>${order.shipingaddres}</td>
     <td>${order.phone_number}</td>
     <td>${order.email}</td>
-    <td>${order.cardnumber}</td>
-    <td>${order.cvv}</td>
-    <td>${order.expire}</td>
     <td>${order.status}</td></tr>`   
     theHTML+=newHtml
 
@@ -188,16 +189,21 @@ function createOrdersTable(data)
 }
 
 
-function NewOrder(model){
+function NewOrder(data){
+  let array = data.split('|')
   fetch("/neworder.html")
   .then(function(response){
       return response.text()
   })
   .then(function(html){
       document.getElementById("renderPage").innerHTML=html;
-  }).then(sessionStorage.setItem('model',model));
+  }).then(
+    sessionStorage.setItem('price',array[0]),
+    sessionStorage.setItem('model',array[1]),
+    sessionStorage.setItem('img',array[2])
+    );
+    
 }
-
 function orderDetails() {
   var customername = document.getElementById("customername").value;
   var quantity = document.getElementById("quantity").value;
@@ -268,26 +274,31 @@ function userDetails() {
 
 }
 
-function loginUser() {
+async function  loginUser() {
   var username = document.getElementById("username").value;
   var password = document.getElementById("password").value;
-  var rolle = 'customer'
 
-  const user = {
-    'username':username,
-    'password':password
-  };
-  
-  fetch("/login",{
-    headers: {
-      'Accept': 'application/json',
-      'Content-Type': 'application/json'
-    },
-    method: "POST",
-    body: JSON.stringify(user)
-})
-.then(function(res){ console.log(res) })
-.catch(function(res){ console.log(res) })
+  const user = {'username':username,'password':password};
+  const response = await fetch("/login",{
+                                headers: {
+                                  'Content-Type': 'application/json'
+                                },
+                                redirect: 'follow',
+                                method: "POST",
+                                body: JSON.stringify(user)
+                            });
+
+console.log('script got the res');
+console.log(response);
+if (response.url == 'http://localhost:3000/orderspage.html') {
+  alert('Sending you to manager page');
+  loadOrders();
+  sessionStorage.setItem('userloged','true')
+}else{
+  alert('Try Again');
+  loadLogin();
+}
+
 
 }
 
