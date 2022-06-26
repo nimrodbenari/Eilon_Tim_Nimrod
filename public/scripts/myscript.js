@@ -292,7 +292,7 @@ console.log('script got the res');
 console.log(response);
 let url = response.url
 let urlArray = url.split('/')
-if (urlArray[2] == 'orderspage.html') {
+if (urlArray[3] == 'orderspage.html') {
   alert('Sending you to manager page');
   loadOrders();
   sessionStorage.setItem('userloged','true')
