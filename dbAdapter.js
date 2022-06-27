@@ -169,14 +169,14 @@ async function insertOrder(order){
 }
 
 async function updateStatus(id){
-    
+    var date = Date(Date.now()).toString()
     try {
         // Connect to the MongoDB cluster
         await client.connect();
         const database = client.db("WaterSportCenter");
       const haiku = database.collection("orders");
       console.log('step 3:  ' + id)
-    let result = await haiku.updateOne({_id:ObjectId(id)}, {$set: {status:'Supplied'}});
+    await haiku.updateOne({_id:ObjectId(id)}, {$set: {status:'Supplied',deliverDate: date}});
      console.log('order updated')
       } catch (e) {
           console.error(e);

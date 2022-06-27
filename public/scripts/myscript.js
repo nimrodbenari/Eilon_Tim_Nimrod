@@ -215,6 +215,8 @@ function orderDetails() {
   var expire = document.getElementById("expire").value;
   var productmodel = sessionStorage.getItem('model');
   var status = 'on-process'
+  var date = Date(Date.now()).toString()
+  
 
   const order = {
     'customername':customername,
@@ -228,7 +230,10 @@ function orderDetails() {
     'cvv':cvv,
     'status':status,
     'productmodel':productmodel,
-    'status': status
+    'status': status,
+    'orderdate': date,
+    'deliverDate': ' '
+
   };
   
   fetch("/neworder",{
