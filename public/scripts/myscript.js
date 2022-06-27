@@ -173,7 +173,7 @@ function getOrders()
 function createOrdersTable(data)
 { 
  var ourTable=document.getElementById("orderTable");
- theHTML="<tr><th>Order ID</th><th>Productmodel</th><th>Quantity</th><th>Customer name</th><th>shiping addres</th><th>phone number</th><th>Email</th><th>Status</th></tr>"
+ theHTML="<tr><th>Order ID</th><th>Productmodel</th><th>Quantity</th><th>Customer name</th><th>shiping addres</th><th>phone number</th><th>Email</th><th>Status</th><th>order date</th><th>delivery date</th></tr>"
     data.forEach(order => {
     newHtml=`<tr><td>${order._id}</td><td>${order.productmodel}</td>
     <td>${order.quantity}</td>
@@ -181,7 +181,9 @@ function createOrdersTable(data)
     <td>${order.shipingaddres}</td>
     <td>${order.phone_number}</td>
     <td>${order.email}</td>
-    <td>${order.status}</td></tr>`   
+    <td>${order.status}</td> 
+    <td>${order.orderdate}</td>  
+    <td>${order.deliverDate}</td></tr>`   
     theHTML+=newHtml
 
  });   
