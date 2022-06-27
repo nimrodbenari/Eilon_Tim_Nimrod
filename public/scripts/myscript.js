@@ -330,3 +330,14 @@ function newemailtonews() {
 
 }
 
+function loadCreers(){
+  fetch("/careerpage.html")
+  .then(function(response){
+      return response.text()
+  })
+  .then(function(html){
+      document.getElementById("renderPage").innerHTML=html;
+  });
+
+}
+

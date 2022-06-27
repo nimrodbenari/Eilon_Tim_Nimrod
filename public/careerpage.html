@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=\, initial-scale=1.0">
+    <title>Document</title>
+    <script src="./scripts/myscript.js"></script>
+    <link rel="stylesheet" href="mystyle.css">
+    <!-- CSS     -->
+    <link rel="stylesheet" href="loginCSS.css">
+</head>
+
+<body>
+
+    <div class="wrapper fadeInDown">
+        <div id="formContent">
+            <!-- Tabs Titles -->
+            <h2 class="active"> Join US! </h2>
+
+
+
+            <!-- Login Form -->
+            <form id="login" onsubmit="loadHome()">
+                <label for="cars">Choose a job:</label><br><br>
+                <select name="job" id="job"><br><br>
+                    <option value="Shaper">Shaper</option>
+                    <option value="Designer">Designer</option>
+                    <option value="Sales">Sales</option>
+                    <option value="Finance">Finance</option>
+                <input type="text" id="fullname" class="fadeIn second" name="fullname" placeholder="Full Name">
+                <input type="text" id="linkedin" class="fadeIn third" name="linkedin" placeholder="Linkedin URL">
+                <label for="cars">Upload you CV:</label><br>
+                <input type="file" id="myfile" name="myfile"><br>
+                <input type="submit" class="fadeIn fourth" value="Apply">
+               
+            </form>
+
+            <!-- go to register -->
+            <div id="formFooter">
+                <a class="w3-bar-item w3-button" onclick="loadHome()">Back to home</a>
+            </div>
+
+        </div>
+    </div>
+
+</body>
+
+</html>
