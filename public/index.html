@@ -25,6 +25,7 @@
     <nav class="w3-sidebar w3-bar-block w3-white w3-collapse w3-top" style="z-index:3;width:210px ;border-style:groove;border-radius: 25px ;" id="mySidebar">
       <div class="w3-container w3-display-container w3-padding-16">
         <i onclick="func_close()" class="fa fa-remove w3-hide-large w3-button w3-display-topright"></i>
+        
         <!-- <a class="w3-bar-item w3-button" onclick="loadHome()"><b>CHAB <br>Surf Center</b></a> -->
         <img src="./css_img/LOGO_5.jpg" onmouseenter="" class="w3-bar-item w3-button" onclick="loadHome()" style="width: 140px ">
 
@@ -71,6 +72,12 @@
           <!-- <a class="w3-bar-item w3-button" onclick="sendMessage()">test</a> -->
           <!-- <i class="fa fa-shopping-cart w3-margin-right"></i>
           <i class="fa fa-search"></i> -->
+          <form onsubmit="searchCategory();return false" style="left:200px">
+          
+          <input type="text" id="category" name="category" placeholder="Search category...">
+          <button type="submit" class="fa fa-search" style="height: 35px;"> 
+          </form>
+          
         </p>
       
     

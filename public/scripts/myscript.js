@@ -174,7 +174,9 @@ function createOrdersTable(data)
  var ourTable=document.getElementById("orderTable");
  theHTML="<tr><th>Order ID</th><th>Productmodel</th><th>Quantity</th><th>Customer name</th><th>shiping addres</th><th>phone number</th><th>Email</th><th>Status</th><th>order date</th><th>delivery date</th></tr>"
     data.forEach(order => {
-    newHtml=`<tr><td>${order._id}</td><td>${order.productmodel}</td>
+    newHtml=`<tr>
+    <td>${order._id}</td>
+    <td>${order.productmodel}</td>
     <td>${order.quantity}</td>
     <td>${order.customername}</td>
     <td>${order.shipingaddres}</td>
@@ -252,7 +254,11 @@ sessionStorage.clear();
 alert('Your order has been successfully saved');
 
 }
+async function searchCategory() {
+  var category = document.getElementById("category").value;
+  await getProducts(category)
 
+}
 function userDetails() {
   var username = document.getElementById("username").value;
   var password = document.getElementById("password").value;
