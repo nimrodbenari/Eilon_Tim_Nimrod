@@ -169,7 +169,7 @@ async function insertOrder(order){
 }
 
 async function updateStatus(id){
-    var date = Date(Date.now()).toString()
+    var date = new Date(Date.now()).toLocaleString().split(',')[0]
     try {
         // Connect to the MongoDB cluster
         await client.connect();

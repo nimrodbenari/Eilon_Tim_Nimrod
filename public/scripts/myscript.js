@@ -169,7 +169,6 @@ function getOrders()
   });
 
 }
-
 function createOrdersTable(data)
 { 
  var ourTable=document.getElementById("orderTable");
@@ -185,7 +184,6 @@ function createOrdersTable(data)
     <td>${order.orderdate}</td>  
     <td>${order.deliverDate}</td></tr>`   
     theHTML+=newHtml
-
  });   
  ourTable.innerHTML=theHTML
 }
@@ -217,7 +215,7 @@ function orderDetails() {
   var expire = document.getElementById("expire").value;
   var productmodel = sessionStorage.getItem('model');
   var status = 'on-process'
-  var date = Date(Date.now()).toString()
+  var date = new Date(Date.now()).toLocaleString().split(',')[0]
   
 
   const order = {
