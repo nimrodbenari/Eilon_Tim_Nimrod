@@ -256,6 +256,7 @@ alert('Your order has been successfully saved');
 }
 async function searchCategory() {
   var category = document.getElementById("category").value;
+  category = category.toLowerCase();
   await getProducts(category)
 
 }
