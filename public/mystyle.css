@@ -29,7 +29,7 @@ a.manager{
        border-left: none;
   }
 
-    #orderTable {
+    #orderTable,#cartable {
         font-family: "Poppins", sans-serif;
         border-collapse: collapse;
         text-align: center;
@@ -40,7 +40,7 @@ a.manager{
         border-radius:6px;
       }
       
-      #orderTable td, #orderTable th {
+      #orderTable td, #orderTable th,#cartable td,#cartable th {
         border: 1px solid rgb(127, 125, 125);
         font-family: "Poppins", sans-serif;
         text-align: center;
@@ -55,7 +55,7 @@ a.manager{
       
       #orderTable tr:hover {background-color: #ddd;}
       
-      #orderTable th {
+      #orderTable th ,#cartable th{
         padding-top: 12px;
         font-family:  Verdana, Geneva, Tahoma, sans-serif;
         padding-bottom: 12px;
@@ -152,7 +152,9 @@ a.manager{
       width: 1000px;
     }
 
-
+  #imgcart{
+    height: 100px;
+  }
     
 /* ----------------- */
 

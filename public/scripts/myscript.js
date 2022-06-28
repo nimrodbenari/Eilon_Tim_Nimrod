@@ -1,4 +1,5 @@
 
+
     // Accordion 
     function myAccFunc() {
       var x = document.getElementById("demoAcc");
@@ -31,7 +32,17 @@
       document.getElementById("mySidebar").style.display = "none";
       document.getElementById("myOverlay").style.display = "none";
     }
-
+// ------------loads section--------------------------------
+    function loadCreers(){
+      fetch("/careerpage.html")
+      .then(function(response){
+          return response.text()
+      })
+      .then(function(html){
+          document.getElementById("renderPage").innerHTML=html;
+      });
+    
+    }
     function loadHome(){
       fetch("/homepage.html")
       .then(function(response){
@@ -86,12 +97,14 @@
 
     }
 
+    // ------------------orders section--------
     function createOrderDiv(){ 
-    var img = sessionStorage.getItem('img');
-    var price = sessionStorage.getItem('price');
-    var model = sessionStorage.getItem('model');
-    var ourDiv=document.getElementById("orderdisplay");
-     newHtml=`<div class="w3-col l3 s6" style="background-color: white;">
+      if (sessionStorage.getItem('cart')==null) {
+          var img = sessionStorage.getItem('img');
+         var price = sessionStorage.getItem('price');
+         var model = sessionStorage.getItem('model');
+         var ourDiv=document.getElementById("orderdisplay");
+          newHtml=`<div class="w3-col l3 s6" style="background-color: white;">
      <div class="w3-display-container">
        <img id="boards" src="${img}">
        <div class="w3-display-middle w3-display-hover">
@@ -101,8 +114,23 @@
         >${model}<br><b>${price}</b></p>
         </div>`   
      ourDiv.innerHTML=newHtml;
+      } else {
+        var ourTable=document.getElementById("orderdisplay");
+data=cartlist();
+ theHTML="<tr><th>name</th><th>price</th><th>img</th></tr>"
+    data.forEach(prod => {
+    newHtml=`<tr>
+    <td>${prod[0]}</td>
+    <td>${prod[1]}</td>
+    <td><img id="imgcart" src="${prod[2]}"</td>
+  </tr>`   
+    theHTML+=newHtml
+ });   
+ ourTable.innerHTML=theHTML
+      }
+    
     }
-
+ // ------------------product div section--------
     function createDiv(data,category)
     { 
      var ourDiv=document.getElementById("theDiv");
@@ -112,9 +140,9 @@
         newHtml=`<div class="w3-col l3 s6" style="background-color: white;">
                 <div class="w3-display-container">
                   <img id="boards" src="${product.img}">
-                  <span class="w3-tag w3-display-topleft">New</span>
                   <div class="w3-display-middle w3-display-hover">
                 <button class="w3-button w3-black" onclick="NewOrder('${product.price}|${product.model}|${product.img}')" >Buy now <i class="fa fa-shopping-cart" ></i></button>
+                <button class="w3-button w3-black" onclick="AddToCart('${product.price}|${product.model}|${product.img}')" >add to cart <i class="fa fa-shopping-cart" ></i></button>
           </div>
         </div>
         <p>${product.model}<br><b>${product.price}</b><b><br><lable>Unit in stock: </lable>${product.quantity}</b></p>
@@ -124,6 +152,8 @@
      });   
      ourDiv.innerHTML=theHtml
     }
+
+  
 //--------------------- products div
   function createTable(data)
   { 
@@ -155,7 +185,7 @@ function getProducts(category)
 
 }
 //---------------- orders table
-function getOrders()
+function getOrders()// fetch GET mathod all orders in DB
 {
   fetch(`/getorders`, {
   method: 'GET',   
@@ -169,7 +199,7 @@ function getOrders()
   });
 
 }
-function createOrdersTable(data)
+function createOrdersTable(data)// table for manager
 { 
  var ourTable=document.getElementById("orderTable");
  theHTML="<tr><th>Order ID</th><th>Productmodel</th><th>Quantity</th><th>Customer name</th><th>shiping addres</th><th>phone number</th><th>Email</th><th>Status</th><th>order date</th><th>delivery date</th></tr>"
@@ -190,8 +220,8 @@ function createOrdersTable(data)
  ourTable.innerHTML=theHTML
 }
 
-
-function NewOrder(data){
+function NewOrder(data){// takes user to new order form 
+  if (sessionStorage.getItem('cart')==null) {
   let array = data.split('|')
   fetch("/neworder.html")
   .then(function(response){
@@ -204,9 +234,50 @@ function NewOrder(data){
     sessionStorage.setItem('model',array[1]),
     sessionStorage.setItem('img',array[2])
     );
-    
+  }
+  else{
+    fetch("/neworder.html")
+    .then(function(response){
+        return response.text()
+    })
+    .then(function(html){
+        document.getElementById("renderPage").innerHTML=html;
+    })
+  }
 }
-function orderDetails() {
+function orderDetails() { //order form to JSON and to DB
+  var order;
+ if (sessionStorage.getItem('cart')!=null) {
+  var customername = document.getElementById("customername").value;
+  var shipingaddres = document.getElementById("shipingaddres").value;
+  var phonenumber = document.getElementById("phonenumber").value;
+  var email = document.getElementById("email").value;
+  var cardnumber = document.getElementById("cardnumber").value;
+  var cvv = document.getElementById("cvv").value;
+  var expire = document.getElementById("expire").value;
+  var status = 'on-process';
+  var date = new Date(Date.now()).toLocaleString().split(',')[0];
+  var ordercart = sessionStorage.getItem('cart');
+
+   order = {
+    'customername':customername,
+    'quantity':quantity,
+    'shipingaddres':shipingaddres,
+    'email':email,
+    'phonenumber':phonenumber,
+    'cardnumber':cardnumber,
+    'cvv':cvv,
+    'expire':expire,
+    'cvv':cvv,
+    'status':status,
+    'productmodel':productmodel,
+    'status': status,
+    'orderdate': date,
+    'deliverDate': ' ',
+    'ordercart': ordercart
+
+  };
+ } else {
   var customername = document.getElementById("customername").value;
   var quantity = document.getElementById("quantity").value;
   var shipingaddres = document.getElementById("shipingaddres").value;
@@ -217,10 +288,9 @@ function orderDetails() {
   var expire = document.getElementById("expire").value;
   var productmodel = sessionStorage.getItem('model');
   var status = 'on-process'
-  var date = new Date(Date.now()).toLocaleString().split(',')[0]
-  
+  var date = new Date(Date.now()).toLocaleString().split(',')[0];
 
-  const order = {
+  order = {
     'customername':customername,
     'quantity':quantity,
     'shipingaddres':shipingaddres,
@@ -237,6 +307,7 @@ function orderDetails() {
     'deliverDate': ' '
 
   };
+ };
   
   fetch("/neworder",{
     headers: {
@@ -337,14 +408,53 @@ function newemailtonews() {
 
 }
 
-function loadCreers(){
-  fetch("/careerpage.html")
-  .then(function(response){
-      return response.text()
-  })
-  .then(function(html){
-      document.getElementById("renderPage").innerHTML=html;
-  });
 
+
+// -------------------------cart section---------------------------
+ function  AddToCart(data) {
+  let dataArray = data.split('|');
+  if (sessionStorage.getItem('prodNum')!=null) {
+    let num = sessionStorage.getItem('prodNum')
+  
+    sessionStorage.setItem(`price${parseInt(num)+1}`,dataArray[0])
+    sessionStorage.setItem(`model${parseInt(num)+1}`,dataArray[1])
+    sessionStorage.setItem(`img${parseInt(num)+1}`,dataArray[2])
+    sessionStorage.setItem(`prodNum`,parseInt(num)+1)
+  } else {
+    sessionStorage.setItem('price',dataArray[0])
+  sessionStorage.setItem('model',dataArray[1])
+  sessionStorage.setItem('img',dataArray[2])
+  sessionStorage.setItem('prodNum',0)
+  }
 }
+
+function cartlist() {
+  let arry = []
+  let prod = []
+prod=[sessionStorage.getItem(`model`),sessionStorage.getItem(`price`),sessionStorage.getItem(`img`)]
+arry[0] = prod
+for (let i = 0; i < sessionStorage.getItem(`prodNum`); i++) {
+  prod=[sessionStorage.getItem(`model${i+1}`),sessionStorage.getItem(`price${i+1}`),sessionStorage.getItem(`img${i+1}`)]
+ arry[i+1]=prod
+}
+sessionStorage.setItem('cart',arry)
+return arry
+}
+function cartTable() {
+  
+var ourTable=document.getElementById("cartable");
+data=cartlist();
+ theHTML="<tr><th>name</th><th>price</th><th>img</th></tr>"
+    data.forEach(prod => {
+    newHtml=`<tr>
+    <td>${prod[0]}</td>
+    <td>${prod[1]}</td>
+    <td><img id="imgcart" src="${prod[2]}"</td>
+  </tr>`   
+    theHTML+=newHtml
+ });   
+ ourTable.innerHTML=theHTML
+}
+
+
 
