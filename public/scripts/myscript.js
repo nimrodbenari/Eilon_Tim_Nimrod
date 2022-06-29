@@ -1,36 +1,35 @@
-
-
-    // Accordion 
-    function myAccFunc() {
+// Accordion 
+function myAccFunc() {
       var x = document.getElementById("demoAcc");
       if (x.className.indexOf("w3-show") == -1) {
         x.className += " w3-show";
       } else {
         x.className = x.className.replace(" w3-show", "");
       }
-    }
-    function myAccFunc() {
+}
+
+ function myAccFunc() {
       var x = document.getElementById("demoAcc_2");
       if (x.className.indexOf("w3-show") == -1) {
         x.className += " w3-show";
       } else {
         x.className = x.className.replace(" w3-show", "");
       }
-    }
+}
     
-    
-    // Open and close sidebar
-    function func_open() {
+// Open and close sidebar
+function func_open() {
       document.getElementById("mySidebar").style.display = "block";
       document.getElementById("myOverlay").style.display = "block";
-    }
+}
      
-    function func_close() {
+function func_close() {
       document.getElementById("mySidebar").style.display = "none";
       document.getElementById("myOverlay").style.display = "none";
-    }
+}
+
 // ------------loads section--------------------------------
-    function loadCreers(){
+function loadCreers(){
       fetch("/careerpage.html")
       .then(function(response){
           return response.text()
@@ -39,8 +38,9 @@
           document.getElementById("renderPage").innerHTML=html;
       });
     
-    }
-    function loadHome(){
+}
+
+ function loadHome(){
       fetch("/homepage.html")
       .then(function(response){
           return response.text()
@@ -48,9 +48,9 @@
       .then(function(html){
           document.getElementById("renderPage").innerHTML=html;
       });
-  }
+}
   
-  function loadLogin(){
+function loadLogin(){
       fetch("/login.html")
       .then(function(response){
           return response.text()
@@ -59,9 +59,9 @@
           document.getElementById("renderPage").innerHTML=html;
       });
 
-    }
+}
     
-    function loadRegister(){
+function loadRegister(){
       fetch("/register.html")
       .then(function(response){
           return response.text()
@@ -70,9 +70,9 @@
           document.getElementById("renderPage").innerHTML=html;
       });
 
-    }
+}
 
-    function loadmangerpage(){
+function loadmangerpage(){
       fetch("/mangerpage.html")
       .then(function(response){
           return response.text()
@@ -81,9 +81,9 @@
           document.getElementById("renderPage").innerHTML=html;
       });
 
-    }
+}
 
-    function loadOrders(){
+function loadOrders(){
       fetch("/orderspage.html")
       .then(function(response){
           return response.text()
@@ -92,10 +92,10 @@
           document.getElementById("renderPage").innerHTML=html;
       }).then(getOrders());
 
-    }
+}
 
     // ------------------orders section--------
-    function createOrderDiv(){ 
+function createOrderDiv(){ 
       if (sessionStorage.getItem('cart')==null) {
           var img = sessionStorage.getItem('img');
          var price = sessionStorage.getItem('price');
@@ -125,9 +125,9 @@
                 //   });   
                 //   ourTable.innerHTML=theHTML 
       }
-    }
+}
  // ------------------product div section--------
-    function createDiv(data,category)
+function createDiv(data,category)
     { 
      var ourDiv=document.getElementById("theDiv");
      theHtml=`<div></div>`
@@ -147,11 +147,10 @@
         }
      });   
      ourDiv.innerHTML=theHtml
-    }
+}
 
-  
 //--------------------- products div
-  function createTable(data)
+function createTable(data)
   { 
    var ourTable=document.getElementById("theTable");
    theHTML="<tr><th>שם מוצר </th><th>מחיר</th><th>כמות</th><th>קטגוריה</th></tr>"
@@ -165,7 +164,8 @@
  
    });   
    ourTable.innerHTML=theHTML
-  }
+}
+
 function getProducts(category)
 {
   fetch(`/getproducts`, {
@@ -195,6 +195,7 @@ function getOrders()// fetch GET mathod all orders in DB
   });
 
 }
+
 function createOrdersTable(data)// table for manager
 { 
  var ourTable=document.getElementById("orderTable");
@@ -241,6 +242,7 @@ function NewOrder(data){// takes user to new order form
     })
   }
 }
+
 function orderDetails() { //order form to JSON and to DB
   var order;
  if (sessionStorage.getItem('cart')!=null) {
@@ -321,13 +323,15 @@ sessionStorage.clear();
 alert('Your order has been successfully saved');
 
 }
-async function searchCategory() {
+
+async function searchCategory() {//search gcategory
   var category = document.getElementById("category").value;
   category = category.toLowerCase();
   await getProducts(category)
 
 }
-function userDetails() {
+
+function userDetails() {//
   var username = document.getElementById("username").value;
   var password = document.getElementById("password").value;
   var email = document.getElementById("email").value;
@@ -403,9 +407,6 @@ function newemailtonews() {
 .catch(function(res){ console.log(res) })
 
 }
-
-
-
 // -------------------------cart section---------------------------
  function  AddToCart(data) {
   let dataArray = data.split('|');
@@ -436,6 +437,7 @@ for (let i = 0; i < sessionStorage.getItem(`prodNum`); i++) {
 sessionStorage.setItem('cart',arry)
 return arry
 }
+
 function cartTable() {
   
 var ourTable=document.getElementById("cartable");

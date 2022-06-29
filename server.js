@@ -6,13 +6,13 @@ const app = express();
 const port = process.env.PORT || 3000;
 const bodyParser = require('body-parser');
 
-// ----------------APP USE-----------------------
+// ----------------APP USE-----------------------//
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: true}))
 app.use(express.static('public'))
 app.use(express.urlencoded({ extended: false}))
 
-// ----------------POST ROUTERS-----------------------
+// ----------------POST ROUTERS-----------------------//
 app.post('/register', async (req, res) => {
   try {
    const hashedPassword = await bcrypt.hash(req.body.password, 10);
@@ -22,8 +22,6 @@ app.post('/register', async (req, res) => {
     res.redirect('/register.html')
   }
 }) 
-
-
 
 app.post('/mangerpage.html', async (req, res) => {
   try {
@@ -73,7 +71,7 @@ app.post('/homepage.html', async (req, res) => {
     res.redirect('/index.html')
   }
 })
-// ----------------GET ROUTERS-----------------------
+// ----------------GET ROUTERS--------------------------------------------------------------//
 app.get('/getproducts',(req, res) => {  
   db_adapter.getProducts()
   .then(function(response){
@@ -100,7 +98,7 @@ app.get('/register', (req, res) => {
   res.render('register.html')
 })
 
-// users mangment section 
+// ---------------------users mangment section ---------------------------------------//
 
 app.get('/users', (req, res) => {
   res.json(users)
@@ -121,7 +119,7 @@ app.post('/login', async (req, res) => {
 }) 
 
 
-// -----------LISTEN---------
+// -----------LISTEN-----------------------//
 app.listen(port, () => {
   console.log(`http://localhost:${port}`)
 })

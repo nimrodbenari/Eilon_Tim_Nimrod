@@ -6,7 +6,7 @@ var url = "mongodb+srv://EilonChabner:TimNimrodEilon1@cluster0.2978k.mongodb.net
 const client = new MongoClient(url);
 
 //---------- user managment section-----------------------
-async function SendUser(name,email,rolle,hashedPassword){
+async function SendUser(name,email,rolle,hashedPassword){//insert new user to DB
   try {
       // Connect to the MongoDB cluster
       await client.connect();
@@ -23,7 +23,7 @@ async function SendUser(name,email,rolle,hashedPassword){
         await client.close();
     }
 }
-async function checkUser(name,password){
+async function checkUser(name,password){//validate manager
     let result = false;
   try {
       // Connect to the MongoDB cluster
@@ -51,7 +51,7 @@ async function checkUser(name,password){
     return result;
     
 }
-async function sendNewsEmail(email){
+async function sendNewsEmail(email){//unser email to newstelle colction
     try {
         // Connect to the MongoDB cluster
         await client.connect();
