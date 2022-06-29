@@ -17,9 +17,6 @@
         x.className = x.className.replace(" w3-show", "");
       }
     }
-
-    // Click on the "Jeans" link on page load to open the accordion for demo purposes
-  
     
     
     // Open and close sidebar
