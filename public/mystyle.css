@@ -29,7 +29,7 @@ a.manager{
        border-left: none;
   }
 
-    #orderTable,#cartable {
+    #orderTable,#cartable{
         font-family: "Poppins", sans-serif;
         border-collapse: collapse;
         text-align: center;
@@ -155,8 +155,7 @@ a.manager{
   #imgcart{
     height: 100px;
   }
-    
-/* ----------------- */
+  #orderdisplay/* ----------------- */
 
 
     

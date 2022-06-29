@@ -115,20 +115,19 @@
         </div>`   
      ourDiv.innerHTML=newHtml;
       } else {
-        var ourTable=document.getElementById("orderdisplay");
-data=cartlist();
- theHTML="<tr><th>name</th><th>price</th><th>img</th></tr>"
-    data.forEach(prod => {
-    newHtml=`<tr>
-    <td>${prod[0]}</td>
-    <td>${prod[1]}</td>
-    <td><img id="imgcart" src="${prod[2]}"</td>
-  </tr>`   
-    theHTML+=newHtml
- });   
- ourTable.innerHTML=theHTML
+                // var ourTable=document.getElementById("orderdisplay");
+                //   data=cartlist();
+                //   theHTML="<tr><th>name</th><th>price</th><th>img</th></tr>"
+                //       data.forEach(prod => {
+                //       newHtml=`<tr>
+                //       <td>${prod[0]}</td>
+                //       <td>${prod[1]}</td>
+                //       <td><img id="imgcart" src="${prod[2]}"</td>
+                //     </tr>`   
+                //       theHTML+=newHtml
+                //   });   
+                //   ourTable.innerHTML=theHTML 
       }
-    
     }
  // ------------------product div section--------
     function createDiv(data,category)

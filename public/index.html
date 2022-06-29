@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="./scripts/myscript.js"></script>
@@ -31,6 +32,11 @@
 
       </div>
       <div class="w3-padding-64 w3-large w3-text-grey" style="font-weight:bold"> 
+        <div>
+        <form onsubmit="searchCategory();return false" style="left:200px">
+          <input type="text" id="category" name="category" placeholder="Search..." style="width:150px;">
+          <button type="submit" class="fa fa-search" style="height: 35px;"> 
+          </form></div><br><br>
           <a href="#" class="w3-bar-item w3-button" onclick="getProducts()">All Boards</a>
           <a href="#" class="w3-bar-item w3-button" onclick="getProducts('long')">Long Boards</a>
           <a href="#" class="w3-bar-item w3-button" onclick="getProducts('short')">Short Boards</a>
@@ -67,10 +73,8 @@
       <!-- Top header -->
       <header class="w3-container w3-xlarge">
         <p class="w3-right">
-          <form onsubmit="searchCategory();return false" style="left:200px">
-          <input type="text" id="category" name="category" placeholder="Search category...">
-          <button type="submit" class="fa fa-search" style="height: 35px;"> 
-          </form>
+          <button style="font-size:24px" onclick="cartTable()">See Cart <i class="fa fa-shopping-cart"></i></button>
+          <button style="font-size:24px" onclick="NewOrder()">Check out <i class="material-icons">&#xe86c;</i></button>
           
         </p>
       
