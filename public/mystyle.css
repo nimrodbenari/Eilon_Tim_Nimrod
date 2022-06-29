@@ -156,3 +156,17 @@ a.manager{
     height: 100px;
   }
   
+
+  #teamImg{
+
+  width: 850px;
+  height: 350px;
+  border-radius: 25px;
+  }
+
+  #aboutDiv{
+    margin-left: 30px;
+    font-size: large;
+
+
+  }

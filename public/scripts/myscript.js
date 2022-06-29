@@ -49,6 +49,15 @@ function loadCreers(){
           document.getElementById("renderPage").innerHTML=html;
       });
 }
+ function loadTeamPage(){
+      fetch("/aboutUs.html")
+      .then(function(response){
+          return response.text()
+      })
+      .then(function(html){
+          document.getElementById("renderPage").innerHTML=html;
+      });
+}
   
 function loadLogin(){
       fetch("/login.html")
